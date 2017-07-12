@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/wbprice/burrow-serverless-app#readme",
   "dependencies": {
-    "hapi": "^16.4.3"
+    "handlebars": "^4.0.10",
+    "hapi": "^16.4.3",
+    "vision": "^4.1.1"
   },
   "devDependencies": {
     "eslint": "^4.2.0",

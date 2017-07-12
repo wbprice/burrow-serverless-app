@@ -5,7 +5,7 @@ const routes = [
         method: 'GET',
         path: '/',
         handler(request, reply) {
-            reply('hello jarvis');
+            reply.view('index');
         }
     },
     {
