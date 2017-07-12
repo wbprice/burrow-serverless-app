@@ -3,6 +3,7 @@
 const Hapi = require('hapi');
 const server = new Hapi.Server();
 const routes = require('./routes');
+const controllers = require('./controllers');
 const plugins = require('./plugins');
 
 server.connection({
@@ -12,6 +13,9 @@ server.connection({
 
 plugins.registerWith(server);
 
-server.route(routes);
+server.route([
+    ...routes,
+    ...controllers
+]);
 
 server.start();

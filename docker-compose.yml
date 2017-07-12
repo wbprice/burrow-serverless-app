@@ -15,3 +15,4 @@ services:
             - .:/opt/app
         environment:
             - NODE_ENV=development
+            - API_BASE=https://iopwyeiagc.execute-api.us-east-1.amazonaws.com/dev/
