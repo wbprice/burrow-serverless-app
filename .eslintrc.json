@@ -1,0 +1,11 @@
+{
+    "extends": "trails/react",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": ["error", 4],
+        "semi": ["error", "always"],
+        "new-cap": 0
+    }
+}
