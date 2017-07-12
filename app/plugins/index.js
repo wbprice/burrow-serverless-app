@@ -14,6 +14,8 @@ function registerWith(server) {
                 html: require('handlebars')
             },
             relativeTo: path.join(__dirname, '..', 'views'),
+            helpersPath: 'helpers',
+            partialsPath: 'partials',
             path: 'templates'
         });
     });
