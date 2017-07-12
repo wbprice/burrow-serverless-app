@@ -3,11 +3,15 @@
 <html>
     <head>
         <title>Burrow</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+        <link rel="stylesheet" href="assets/css/style.css" />
     </head>
 
     <body>
-        <h1>Burrow</h1>
+        {{>header}}
         
-        {{> @partial-block}}
+        <div class="container">
+            {{> @partial-block}}
+        </div>
     </body>
 </html>

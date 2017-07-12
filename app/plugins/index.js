@@ -5,7 +5,8 @@ const path = require('path');
 
 function registerWith(server) {
     server.register([
-        require('vision')
+        require('vision'),
+        require('inert')
     ], (err) => {
         Hoek.assert(!err, err);
 
@@ -17,6 +18,18 @@ function registerWith(server) {
             helpersPath: 'helpers',
             partialsPath: 'partials',
             path: 'templates'
+        });
+
+        server.route({
+            method: 'GET',
+            path: '/assets/{param*}',
+            handler: {
+                directory: {
+                    path: path.join(__dirname, '..', 'assets'),
+                    redirectToSlash: true,
+                    index: false
+                }
+            }
         });
     });
 }
