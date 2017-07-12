@@ -11,9 +11,7 @@ const routes = [
     {
         method: 'GET',
         path: '/login',
-        handler(request, reply) {
-            reply('login page');
-        }
+        handler: require('./login')
     }
 ];
 

@@ -13,7 +13,7 @@ function registerWith(server) {
             engines: {
                 html: require('handlebars')
             },
-            relativeTo: path.join(__dirname, '..'),
+            relativeTo: path.join(__dirname, '..', 'views'),
             path: 'templates'
         });
     });
