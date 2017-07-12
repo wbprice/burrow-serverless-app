@@ -2,18 +2,13 @@
 
 const Hapi = require('hapi');
 const server = new Hapi.Server();
+const routes = require('./routes');
 
 server.connection({
     host: '0.0.0.0',
     port: 80
 });
 
-server.route({
-    method: 'GET',
-    path: '/',
-    handler(request, reply) {
-        reply('hello world');
-    }
-});
+server.route(routes);
 
 server.start();
