@@ -1,0 +1,22 @@
+{
+  "name": "burrow-serverless-app",
+  "version": "0.0.0",
+  "description": "Serves the web frontend for Burrow",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wbprice/burrow-serverless-app.git"
+  },
+  "keywords": [
+    "IoT"
+  ],
+  "author": "Blaine Price",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wbprice/burrow-serverless-app/issues"
+  },
+  "homepage": "https://github.com/wbprice/burrow-serverless-app#readme"
+}
