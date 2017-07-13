@@ -1,7 +1,7 @@
 'use strict';
 
 function handler(request, reply) {
-    reply('login route');
+    reply.view('login');
 }
 
 module.exports = handler;

@@ -16,5 +16,3 @@ services:
         environment:
             - NODE_ENV=development
             - API_BASE=https://iopwyeiagc.execute-api.us-east-1.amazonaws.com/dev/
-            - PASS_HASH=atPVVBHNw4yfDTnPpzqCJu9BRmdQDXj4VTFwws33qrqDRp44
-            - PASS_SALT_ROUNDS=10
