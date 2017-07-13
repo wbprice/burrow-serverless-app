@@ -1,11 +1,31 @@
 .header {
+    background: white;
+}
 
+.header .app-name {
+    font-size: 2em;
+    line-height: 2em;
 }
 
 .header .navbar-list {
+    list-style: none;
+    text-align: right;
+    line-height: 4em;
+    margin-bottom: 0;
+}
 
+.header .navbar-item > a {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+.header .navbar-item a:hover {
+    color: #666666;
 }
 
 .header .navbar-item {
-    
+    display: inline-block;
+    padding: 0 1em;
+    margin-bottom: 0;
 }
