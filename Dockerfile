@@ -16,7 +16,7 @@ COPY package.json /opt
 RUN npm install && npm cache clean --force
 ENV PATH /opt/node_modules/.bin:$PATH
 
-WORKDIR /opt/burrow
-COPY . /opt/burrow
+WORKDIR /opt/app
+COPY . /opt/app
 
 CMD ["node", "index.js"]

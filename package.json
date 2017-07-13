@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/wbprice/burrow-serverless-app#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "handlebars": "^4.0.10",
     "hapi": "^16.4.3",
     "inert": "^4.2.0",
