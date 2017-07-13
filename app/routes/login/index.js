@@ -1,7 +1,10 @@
 'use strict';
 
 function handler(request, reply) {
-    reply.view('login');
+    const user = request.yar.get('user');
+    reply.view('login', {
+        user
+    });
 }
 
 module.exports = handler;

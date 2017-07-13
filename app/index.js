@@ -11,6 +11,15 @@ server.connection({
     port: 80
 });
 
+server.state('user', {
+    ttl: 86400,
+    isSecure: false,
+    isHttpOnly: false,
+    encoding: 'base64json',
+    clearInvalid: false, // remove invalid cookies
+    strictHeader: true // don't allow violations of RFC 6265
+});
+
 plugins.registerWith(server);
 
 server.route([

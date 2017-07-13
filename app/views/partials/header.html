@@ -1,5 +1,11 @@
 <section class="header">
     <div class="container">
         <b>Burrow - Control your air conditioners</b>
+        {{#if user.name}}
+            Hello {{user.name}}!
+            <a href="/logout">Logout</a>
+        {{else}}
+            <a href="/login">Login</a>
+        {{/if}}
     </div>
 </section>

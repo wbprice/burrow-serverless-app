@@ -6,7 +6,16 @@ const path = require('path');
 function registerWith(server) {
     server.register([
         require('vision'),
-        require('inert')
+        require('inert'),
+        {
+            register: require('yar'),
+            options: {
+                cookieOptions: {
+                    password: process.env.COOKIE_HASH,
+                    isSecure: process.env.NODE_ENV === 'production'
+                }
+            }
+        }
     ], (err) => {
         Hoek.assert(!err, err);
 

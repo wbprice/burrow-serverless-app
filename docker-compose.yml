@@ -6,7 +6,7 @@ services:
             context: .
             args:
                 - NODE_ENV=development
-        command: node_modules/.bin/nodemon --inspect=0.0.0.0:9229
+        command: node_modules/.bin/nodemon -e html,js,css --inspect=0.0.0.0:9229
         ports:
             - 80:80
             - 5858:5858
@@ -15,4 +15,5 @@ services:
             - .:/opt/app
         environment:
             - NODE_ENV=development
+            - COOKIE_HASH=gSha8kecFe2rCS8eGAughJfbwsfEEdDYykhA5QRdJjxfPK42
             - API_BASE=https://iopwyeiagc.execute-api.us-east-1.amazonaws.com/dev/

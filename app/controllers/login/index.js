@@ -34,12 +34,14 @@ function login(request, reply) {
                     return reply(Boom.badRequest('User/pass combination invalid'));
                 }
 
-                const response = {
+                const userInfo = {
                     emailAddress: account.emailAddress,
-                    name: account.emailAddress,
+                    name: account.name,
                     id: account.id
                 };
-                return reply(response);
+
+                request.yar.set('user', userInfo);
+                return reply.redirect('/');
             })
             .catch((error) => {
                 return reply(Boom.badRequest(error.message));
