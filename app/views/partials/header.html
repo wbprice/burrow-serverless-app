@@ -1,11 +1,16 @@
 <section class="header">
     <div class="container">
-        <b>Burrow - Control your air conditioners</b>
-        {{#if user.name}}
-            Hello {{user.name}}!
-            <a href="/logout">Logout</a>
-        {{else}}
-            <a href="/login">Login</a>
-        {{/if}}
+        <b class="app-name">Burrow</b>
+        <nav>
+            <ul class="navbar-list">
+                <li class="navbar-item"><a href="/remotes">Remotes</a></li>
+                <li class="navbar-item"><a href="/schedule">Set Schedule</a></li>
+                {{#if user.name}}
+                    <li class="navbar-item">{{user.name}} <a href="/logout">Logout</a></li>
+                {{else}}
+                    <li class="navbar-item"><a href="/login">Login</a></li>
+                {{/if}}
+            </ul>
+        </nav>
     </div>
 </section>
