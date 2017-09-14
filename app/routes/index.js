@@ -15,6 +15,11 @@ const routes = [
         method: 'GET',
         path: '/signup',
         handler: require('./signup')
+    },
+    {
+        method: 'GET',
+        path: '/dashboard',
+        handler: require('./dashboard')
     }
 ];
 
