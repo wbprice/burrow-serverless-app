@@ -3,6 +3,10 @@
     <h1>Dashboard</h1>
     <p>Manage your remotes here</p>
 
+    {{#each remotes}}
+        {{>remote-form}}
+    {{/each}}
+
     <div class="card">
         {{>remote-form}}
     </div>

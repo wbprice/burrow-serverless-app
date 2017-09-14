@@ -1,12 +1,24 @@
 <form action="/api/v1/remote" method="post">
     <div>
         <label for="temperature">Temperature<label>
-        <input required name="temperature" id="temperature" placeholder="72" type="number">
+        <input 
+            required 
+            name="temperature" 
+            id="temperature" 
+            placeholder="72" 
+            type="number"
+            value={{temperature}}>
     </div>
 
     <div>
         <label for="location">Remote Name<label>
-        <input required name="location" id="location" placeholder="Location (eg. Living Room)" type="text">
+        <input 
+            required 
+            name="location" 
+            id="location" 
+            placeholder="Location (eg. Living Room)" 
+            type="text"
+            value="{{name}}">
     </div>
 
     <button type="submit">Update</button>

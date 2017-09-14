@@ -5,34 +5,36 @@ const Boom = require('boom');
 
 const API_BASE = process.env.REMOTE_API_BASE || '';
 
-function createRemote(request, reply) {
-    const { id } = request.yar.get('user');
-    const { temperature, location } = request.payload;
-
-    console.log(id, temperature, location)
-
+function createRemote(owner, temperature, location, callback) {
     const options = {
         headers: {
             'Content-Type': 'application/json'
         },
         payload: JSON.stringify({
-            owner: id,
+            owner,
             temperature,
             location
         })
     };
 
-    console.log(`${API_BASE}/remotes`);
-
     Wreck.post(`${API_BASE}/remotes`, options, (err, res, payload) => {
         if (err) {
-            return reply(Boom.badRequest(err.message));
+            return callback(err);
         }
-        console.log(payload.toString());
-        reply(payload);
+        return callback(null, payload.toString());        
+    });
+}
+
+function fetchRemotes(id, callback) {
+    Wreck.get(`${API_BASE}/remotes`, (err, res, payload) => {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, payload.toString());
     });
 }
 
 module.exports = {
-    etchRemotes
+    createRemote,
+    fetchRemotes
 }

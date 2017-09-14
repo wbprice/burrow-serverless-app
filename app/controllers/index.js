@@ -8,7 +8,7 @@ const login = require('./login');
 const logout = require('./logout');
 const {
     createRemote
-} = require('./remote');
+} = require('./remotes');
 
 const controllers = [
     {
