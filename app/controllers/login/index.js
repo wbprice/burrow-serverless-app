@@ -4,7 +4,7 @@ const Wreck = require('wreck');
 const Boom = require('boom');
 const bcrypt = require('bcryptjs');
 
-const API_BASE = process.env.API_BASE;
+const API_BASE = process.env.USERS_API_BASE;
 
 function login(request, reply) {
     const {

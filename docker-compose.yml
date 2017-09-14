@@ -16,4 +16,5 @@ services:
         environment:
             - NODE_ENV=development
             - COOKIE_HASH=gSha8kecFe2rCS8eGAughJfbwsfEEdDYykhA5QRdJjxfPK42
-            - API_BASE=https://iopwyeiagc.execute-api.us-east-1.amazonaws.com/dev/
+            - USER_API_BASE=https://iopwyeiagc.execute-api.us-east-1.amazonaws.com/dev
+            - REMOTE_API_BASE=https://342atck0ae.execute-api.us-east-1.amazonaws.com/dev

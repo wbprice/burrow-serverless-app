@@ -4,7 +4,7 @@ const Wreck = require('wreck');
 const Boom = require('boom');
 const bcrypt = require('bcryptjs');
 
-const API_BASE = process.env.API_BASE || '';
+const API_BASE = process.env.USER_API_BASE || '';
 
 function signup(request, reply) {
     const data = request.payload;
