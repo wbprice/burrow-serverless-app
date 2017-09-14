@@ -1,6 +1,23 @@
 {{#>layout}}
-    <h1>Login</h1>
 
-    {{>login-form}}
+    <div class="container">
+
+        <div class="six columns">
+            <div class="card">
+                <h2>Login</h2>
+                <p>Login to an existing account</p>
+                {{>login-form}}
+            </div>
+        </div>
+
+        <div class="six columns">
+            <div class="card">
+                <h2>Sign Up</h2>
+                <p>Create a new account</p>
+                {{>signup-form}}
+            </div>
+        </div>
+
+    </div>
 
 {{/layout}}

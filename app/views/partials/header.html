@@ -1,16 +1,16 @@
 <section class="header">
     <div class="container">
         <div class="three columns">
-            <b class="app-name">Burrow</b>
+            <a href="/">
+                <b class="app-name">Burrow</b>
+            </a>
         </div>
         <nav class="nine columns">
             <ul class="navbar-list">
-                <li class="navbar-item"><a href="/remotes">Remotes</a></li>
-                <li class="navbar-item"><a href="/schedule">Set Schedule</a></li>
                 {{#if user.name}}
                     <li class="navbar-item">{{user.name}} <a href="/logout">Logout</a></li>
                 {{else}}
-                    <li class="navbar-item"><a href="/login">Login</a></li>
+                    <li class="navbar-item"><a href="/login">Login / Signup</a></li>
                 {{/if}}
             </ul>
         </nav>

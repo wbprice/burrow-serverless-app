@@ -34,6 +34,7 @@ function signup(request, reply) {
             if (err) {
                 return reply(Boom.badRequest(err.message));
             }
+            request.yar.set('user', {name, emailAddress});
             return reply.redirect('/');
         });
     });
