@@ -2,7 +2,7 @@
 
 function handler(request, reply) {
     const user = request.yar.get('user');
-    reply.view('index', {
+    return reply.view('index', {
         user
     });
 }

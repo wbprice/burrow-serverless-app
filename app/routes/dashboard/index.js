@@ -1,19 +1,19 @@
 'use strict';
 
-const RemoteService = require('./../../services/remotes');
+const RemoteService = require('./../../services/remote');
 
 function handler(request, reply) {
     const user = request.yar.get('user');
     return RemoteService.fetchRemotes(user.id, (err, payload) => {
         if (err) {
-            return reply('oh shoot');
+            return reply(err);
         }
 
-        reply.view('dashboard', {
+        return reply.view('dashboard', {
             user,
-            remotes: JSON.parse(payload)
+            remotes: payload
         });
-    })
+    });
 }
 
 module.exports = handler;

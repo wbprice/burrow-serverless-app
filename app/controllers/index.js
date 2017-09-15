@@ -3,12 +3,16 @@
 const API_ROOT = '/api/v1/';
 const path = require('path');
 
-const signup = require('./signup');
-const login = require('./login');
-const logout = require('./logout');
 const {
-    createRemote
-} = require('./remotes');
+    signup,
+    login,
+    logout
+} = require('./user');
+
+const {
+    createRemote,
+    updateRemote
+} = require('./remote');
 
 const controllers = [
     {
@@ -29,7 +33,12 @@ const controllers = [
     {
         method: 'POST',
         path: path.join(API_ROOT, 'remote'),
-        handler: createRemote 
+        handler: createRemote
+    },
+    {
+        method: 'POST',
+        path: path.join(API_ROOT, 'remote/{id}'),
+        handler: updateRemote
     }
 ];
 
