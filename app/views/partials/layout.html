@@ -5,10 +5,16 @@
         <title>Burrow</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
         <link rel="stylesheet" href="assets/css/style.css" />
+        <script src="/assets/js/facebook-login.js"></script>
+
     </head>
 
     <body>
         {{>header}}
+
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+            
+        <div id="status"></div>
         
         {{> @partial-block}}
     </body>
