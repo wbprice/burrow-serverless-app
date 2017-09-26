@@ -1,10 +1,15 @@
 'use strict';
 
-const API_ROOT = '/api/v1/';
 const path = require('path');
+
+const { 
+    API_ROOT,
+    SOCIAL_LOGIN_REDIRECT
+} = process.env;
 
 const {
     signup,
+    socialLogin,
     login,
     logout
 } = require('./user');
@@ -39,7 +44,12 @@ const controllers = [
         method: 'POST',
         path: path.join(API_ROOT, 'remote/{id}'),
         handler: updateRemote
-    }
+    },
+    {
+        method: 'GET',
+        path: path.join(API_ROOT, 'social-login'),
+        handler: socialLogin
+    },
 ];
 
 module.exports = controllers;

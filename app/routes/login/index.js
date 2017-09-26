@@ -1,13 +1,20 @@
 'use strict';
 
-const fbAppId = process.env.FB_APP_ID;
+const path = require('path');
+
+const {
+    API_ROOT,
+    FB_APP_ID,
+    SOCIAL_LOGIN_REDIRECT,
+} = process.env;
 
 function handler(request, reply) {
     const user = request.yar.get('user');
+
     return reply.view('login', {
         user,
-        fbAppId,
-        signupRedirect: 'http://localhost/social-login' 
+        FB_APP_ID,
+        SOCIAL_LOGIN_REDIRECT
     });
 }
 

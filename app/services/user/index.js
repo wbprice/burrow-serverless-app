@@ -3,7 +3,12 @@
 const Wreck = require('wreck');
 const Boom = require('boom');
 const bcrypt = require('bcryptjs');
-const API_BASE = process.env.USER_API_BASE;
+const {
+    USER_API_BASE, 
+    FB_APP_ID,
+    FB_APP_SECRET,
+    SOCIAL_LOGIN_REDIRECT
+} = process.env;
 
 function login(emailAddress, password, callback) {
 
@@ -74,7 +79,38 @@ function signup(data, callback) {
     });
 }
 
+function getAccessToken(code, callback) {
+    const options = {
+        json: true
+    }
+
+    const url = 'https://graph.facebook.com/v2.10/oauth/access_token?' +
+                `client_id=${FB_APP_ID}` +
+                `&redirect_uri=${SOCIAL_LOGIN_REDIRECT}` +
+                `&client_secret=${FB_APP_SECRET}` +
+                `&code=${code}`;
+    
+    return Wreck.get(url, options, (err, response, payload) => {
+        if (err) {
+            return callback(err)
+        }
+        return callback(null, payload);
+    });
+}
+
+function socialLogin(code, callback) {
+    getAccessToken(code, (err, accessCode) => {
+        if (err) {
+            // handle error
+            return callback(err)
+        }
+        // handle success
+        return callback(null, accessCode)
+    });
+}
+
 module.exports = {
     login,
+    socialLogin,
     signup
 };

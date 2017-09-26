@@ -3,6 +3,20 @@
 const UserService = require('./../../services/user');
 const Boom = require('boom');
 
+const Wreck = require('wreck');
+
+function socialLogin(request, reply) {
+    const { code } = request.query;
+    return UserService.socialLogin(code, (err, data) => {
+        if (err) {
+            reply(err);
+        }
+        return reply(data);
+    });
+}
+
+module.exports = socialLogin;
+
 function login(request, reply) {
     const {
         emailAddress,
@@ -56,6 +70,7 @@ function signup(request, reply) {
 
 module.exports = {
     login,
+    socialLogin,
     logout,
     signup
 };
