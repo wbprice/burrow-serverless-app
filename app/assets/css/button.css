@@ -2,18 +2,18 @@
 
 }
 
-.button.big {
+button.big, .button.big {
     height: 48px;
     line-height: 48px;
 }
 
-.button.primary {
+button.primary, .button.primary {
     background: #586e75;
     border-color: #586e75;
     color: #fdf6e3;
 }
 
-.button.primary:hover {
+button.primary, .button.primary:hover {
     background: #073642; 
     border-color: #073642; 
 }

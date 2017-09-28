@@ -8,7 +8,6 @@ const {
 
 function handler(request, reply) {
     const user = request.yar.get('user');
-    debugger;
     return reply.view('signup', { 
         user,
         FB_APP_ID,
