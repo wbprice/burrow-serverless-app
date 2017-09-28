@@ -1,0 +1,16 @@
+{{#>layout page="confirm-account"}}
+    <div class="container">
+        <div class="card">
+            <h1>Confirm Your Account</h1>
+            <p>We just sent a confirmation email to {{user.username}}. Go check it out and enter the code here<p>
+
+            <form method="POST" action="/api/v1/confirm-account">
+                <div>
+                    <label for="name">Confirmation Code</label>
+                    <input required name="confirmationCode" id="confirmationCode" placeholder="######">
+                </div>
+                <button class="primary" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+{{/layout}}

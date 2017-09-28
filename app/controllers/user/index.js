@@ -15,8 +15,6 @@ function socialLogin(request, reply) {
     });
 }
 
-module.exports = socialLogin;
-
 function login(request, reply) {
     const {
         emailAddress,
@@ -28,13 +26,7 @@ function login(request, reply) {
             return reply(err);
         }
 
-        const {
-            name,
-            emailAddress,
-            id
-        } = payload;
-
-        request.yar.set('user', {name, emailAddress, id});
+        request.yar.set('user', payload)
         return reply.redirect('/dashboard');
     });
 }
