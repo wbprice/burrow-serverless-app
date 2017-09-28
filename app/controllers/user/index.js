@@ -57,6 +57,8 @@ function signup(request, reply) {
             return reply(err);
         }
 
+        console.log('payload', payload);
+
         const {
             name,
             emailAddress,

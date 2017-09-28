@@ -1,4 +1,8 @@
 @import 'header.css';
 @import 'body.css';
+@import 'typography.css';
 @import 'card.css';
 @import 'button.css';
+
+/* Page Specific CSS */
+@import 'index.css';

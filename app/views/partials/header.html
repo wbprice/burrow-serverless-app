@@ -1,18 +1,16 @@
 <section class="header">
     <div class="container">
-        <div class="three columns">
-            <a href="/">
-                <b class="app-name">Burrow</b>
-            </a>
-        </div>
-        <nav class="nine columns">
+        <a href="/">
+            <b class="app-name">Burrow</b>
+        </a>
+        <nav>
             <ul class="navbar-list">
                 {{#if user.name}}
                     <a href="/dashboard"><li class="navbar-item">Dashboard</li></a>
                     <a href="/help"><li class="navbar-item">Help</li></a>
                     <li class="navbar-item">{{user.name}} <a href="/logout">Logout</a></li>
                 {{else}}
-                    <li class="navbar-item"><a href="/login">Login / Signup</a></li>
+                    <li class="navbar-item"><a href="/login">Login</a></li>
                 {{/if}}
             </ul>
         </nav>

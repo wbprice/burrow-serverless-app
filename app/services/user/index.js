@@ -2,7 +2,6 @@
 
 const Wreck = require('wreck');
 const Boom = require('boom');
-const bcrypt = require('bcryptjs');
 const {
     USER_API_BASE, 
     FB_APP_ID,
@@ -16,7 +15,7 @@ function login(emailAddress, password, callback) {
         json: true
     };
 
-    return Wreck.get(`${API_BASE}/users?emailAddress=${emailAddress}`, options, (error, response, payload) => {
+    return Wreck.get(`${USER_API_BASE}/users?emailAddress=${emailAddress}`, options, (error, response, payload) => {
         if (error) {
             return callback(error);
         }
@@ -54,28 +53,25 @@ function login(emailAddress, password, callback) {
 }
 
 function signup(data, callback) {
-    return bcrypt.hash(data.password, 10, (err, hash) => {
+    const options = {
+        json: true,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        payload: JSON.stringify({
+            name: data.name,
+            emailAddress: data.emailAddress,
+            password: data.password
+        })
+    };
+
+    return Wreck.post(`${USER_API_BASE}/signup`, options, (err, response, payload) => {
         if (err) {
-            return callback(new Error('Error hashing password'));
+            console.log('error: ', err);
+            return callback(err);
         }
-
-        const options = {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            payload: JSON.stringify({
-                name: data.name,
-                emailAddress: data.emailAddress,
-                password: hash
-            })
-        };
-
-        return Wreck.post(`${API_BASE}/users`, options, (err, response, payload) => {
-            if (err) {
-                return callback(err);
-            }
-            return callback(null, payload);
-        });
+        console.log('success: ', payload);
+        return callback(null, payload);
     });
 }
 
