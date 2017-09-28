@@ -9,6 +9,7 @@ const {
 
 const {
     signup,
+    confirmAccount,
     socialLogin,
     login,
     logout
@@ -24,6 +25,11 @@ const controllers = [
         method: 'POST',
         path: path.join(API_ROOT, 'signup'),
         handler: signup
+    },
+    {
+        method: 'POST',
+        path: path.join(API_ROOT, 'confirm-account'),
+        handler: confirmAccount
     },
     {
         method: 'POST',

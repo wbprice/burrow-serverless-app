@@ -57,15 +57,35 @@ function signup(request, reply) {
             return reply(err);
         }
 
-        console.log('payload', payload);
-
         const {
-            name,
-            emailAddress,
-            id
+            username,
         } = payload;
 
-        request.yar.set('user', {name, emailAddress, id});
+        request.yar.set('user', {
+            username,
+            confirmed: false
+        });
+
+        return reply.redirect('/confirm-account');
+    });
+}
+
+function confirmAccount(request, reply) {
+    const { confirmationCode } = request.payload;
+    const { username } = request.yar.get('user');
+
+    if (!confirmationCode) {
+        return reply(Boom.unauthorized('Please supply a confirmation code'));
+    }
+
+    if (!username) {
+        return reply(Boom.unauthorized('You need to be logged in to do this'));
+    }
+
+    return UserService.confirmAccount(username, confirmationCode, (err, payload) => {
+        if (err) {
+            return reply(err);
+        }
         return reply.redirect('/dashboard');
     });
 }
@@ -74,5 +94,6 @@ module.exports = {
     login,
     socialLogin,
     logout,
-    signup
+    signup,
+    confirmAccount
 };

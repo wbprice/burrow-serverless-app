@@ -70,7 +70,6 @@ function signup(data, callback) {
             console.log('error: ', err);
             return callback(err);
         }
-        console.log('success: ', payload);
         return callback(null, payload);
     });
 }
@@ -105,8 +104,26 @@ function socialLogin(code, callback) {
     });
 }
 
+function confirmAccount(username, confirmationCode, callback) {
+    const options = {
+        json: true,
+        payload: JSON.stringify({
+            confirmationCode,
+            username
+        })
+    };
+
+    return Wreck.post(`${USER_API_BASE}/confirm-account`, options, (err, response, payload) => {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, payload)
+    });
+}
+
 module.exports = {
     login,
     socialLogin,
-    signup
+    signup,
+    confirmAccount
 };
