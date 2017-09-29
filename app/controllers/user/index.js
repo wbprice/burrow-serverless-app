@@ -78,7 +78,7 @@ function confirmAccount(request, reply) {
         if (err) {
             return reply(err);
         }
-        return reply.redirect('/dashboard');
+        return reply.redirect('/login');
     });
 }
 
