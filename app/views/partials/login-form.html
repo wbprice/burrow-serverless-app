@@ -1,9 +1,9 @@
-<form action="/api/v1/login" method="post">
+<form action="/login" method="post">
     <div>
         <label for="emailAddress">Email Address<label>
         <input required name="emailAddress" id="emailAddress" placeholder="Email Address" type="email">
-        {{#if error.emailAddress}}
-            <p class="error-text">{{emailAddressError}}</p>
+        {{#if error.username}}
+            <p class="error-text">{{error.username}}</p>
         {{/if}}
     </div>
 
@@ -11,7 +11,7 @@
         <label for="password">Password<label>
         <input required name="password" id="password" placeholder="Password" type="password">
         {{#if error.password}}
-            <p class="error-text">{{passwordError}}</p>
+            <p class="error-text">{{error.password}}</p>
         {{/if}}
     </div>
 

@@ -23,7 +23,7 @@ const {
 const controllers = [
     {
         method: 'POST',
-        path: path.join(API_ROOT, 'signup'),
+        path: '/signup',
         handler: signup
     },
     {
@@ -33,7 +33,7 @@ const controllers = [
     },
     {
         method: 'POST',
-        path: path.join(API_ROOT, 'login'),
+        path: '/login',
         handler: login
     },
     {
