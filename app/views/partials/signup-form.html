@@ -6,16 +6,25 @@
     <div>
         <label for="name">Name<label>
         <input required name="name" id="name" placeholder="Name" type="text">
+        {{#if error.name}}
+            <p class="input-error">{{error.name}}</p>
+        {{/if}}
     </div>
 
     <div>
         <label for="emailAddress">Email Address<label>
         <input required name="emailAddress" id="emailAddress" placeholder="Email Address" type="email">
+        {{#if error.emailAddress}}
+            <p class="input-error">{{email.emailAddress}}</p>
+        {{/if}}
     </div>
 
     <div>
         <label for="password">Password<label>
         <input required name="password" id="password" placeholder="Password" type="password">
+        {{#if error.password}}
+            <p class="input-error">{{error.password}}</p>
+        {{/if}}
     </div>
 
     <div>

@@ -2,11 +2,17 @@
     <div>
         <label for="emailAddress">Email Address<label>
         <input required name="emailAddress" id="emailAddress" placeholder="Email Address" type="email">
+        {{#if error.emailAddress}}
+            <p class="error-text">{{emailAddressError}}</p>
+        {{/if}}
     </div>
 
     <div>
         <label for="password">Password<label>
         <input required name="password" id="password" placeholder="Password" type="password">
+        {{#if error.password}}
+            <p class="error-text">{{passwordError}}</p>
+        {{/if}}
     </div>
 
     <button class="primary" type="submit">Submit</button>
