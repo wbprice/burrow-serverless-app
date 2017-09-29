@@ -7,9 +7,7 @@ const Wreck = require('wreck');
 
 function parseErrorObject(err) {
     const output = {};
-    const error = err.data.payload;
-
-    console.log('log error: ', error);
+    const error = err.data && err.data.payload;
         
     switch(error.code) {
     case 'NotAuthorizedException':
