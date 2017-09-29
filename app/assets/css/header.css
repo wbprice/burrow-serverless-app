@@ -1,11 +1,15 @@
 .header {
-    background: white;
+    background: #eee8d5;
     margin-bottom: 3em;
 }
 
 .header a .app-name {
-    font-size: 2em;
-    line-height: 2em;
+    font-size: 1.5em;
+    line-height: 64px;
+}
+
+.header nav {
+    float: right;
 }
 
 .header .navbar-list {
@@ -17,12 +21,7 @@
 
 .header a {
     text-decoration: none;
-    color: #1a1a1a;
     font-weight: bold;
-}
-
-.header a:hover {
-    color: #666666;
 }
 
 .header .navbar-item {

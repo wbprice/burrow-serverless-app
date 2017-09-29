@@ -1,0 +1,29 @@
+{{#if id}}
+<form action="/api/v1/remote/{{id}}" method="post">
+{{else}}
+<form action="/api/v1/remote" method="post">
+{{/if}}
+    <div>
+        <label for="temperature">Temperature<label>
+        <input 
+            required 
+            name="temperature" 
+            id="temperature" 
+            placeholder="72" 
+            type="number"
+            value={{temperature}}>
+    </div>
+
+    <div>
+        <label for="name">Remote Name<label>
+        <input 
+            required 
+            name="name" 
+            id="name" 
+            placeholder="Name (eg. Living Room)" 
+            type="text"
+            value="{{name}}">
+    </div>
+
+    <button type="submit">Update</button>
+</form>
