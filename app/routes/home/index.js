@@ -2,9 +2,12 @@
 
 function handler(request, reply) {
     const user = request.yar.get('user');
-    return reply.view('index', {
-        user
-    });
+
+    if (user) {
+        return reply.redirect('dashboard');
+    }
+
+    return reply.view('index');
 }
 
 module.exports = handler;
