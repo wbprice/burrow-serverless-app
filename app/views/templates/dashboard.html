@@ -7,10 +7,14 @@
         {{>remote-form}}
     {{/each}}
 
-    <div class="card">
-        <h2>DEBUG</h2>
-        {{>remote-form}}
-    </div>
+    {{#if noRemotes}}
+        <div class="card">
+            <h2>DEBUG</h2>
+            <p>There aren't any remotes!  You should create one.</p>
+            {{>remote-form}}
+        </div>
+    {{/if}}
+
 
 </div>
 {{/layout}}

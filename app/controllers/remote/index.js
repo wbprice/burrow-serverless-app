@@ -9,7 +9,7 @@ function createRemote(request, reply) {
     return RemoteService.createRemote(id, temperature, name, (err, payload) => {
         // If error
         if (err) {
-            return reply('ah shit');
+            return reply(err);
         }
         // Else, refresh the page.
         return reply.redirect('/dashboard');
