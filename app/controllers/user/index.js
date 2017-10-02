@@ -5,6 +5,25 @@ const Boom = require('boom');
 
 const Wreck = require('wreck');
 
+function parseErrorObject(err) {
+    const output = {};
+    const error = err.data && err.data.payload;
+        
+    switch(error.code) {
+    case 'NotAuthorizedException':
+    case 'UserNotFoundException':
+        output.username = error.message;
+        break;
+    case 'UsernameExistsException':
+        output.username = error.message;
+        break;
+    case 'InvalidPasswordException':
+        output.password = error.message;
+        break;
+    }
+    return output;
+}
+
 function socialLogin(request, reply) {
     const { code } = request.query;
     return UserService.socialLogin(code, (err, data) => {
@@ -23,7 +42,9 @@ function login(request, reply) {
 
     return UserService.login(emailAddress, password, (err, payload) => {
         if (err) {
-            return reply(err);
+            return reply.view('login', {
+                error: parseErrorObject(err)
+            });
         }
 
         request.yar.set('user', payload)
@@ -32,7 +53,7 @@ function login(request, reply) {
 }
 
 function logout(request, reply) {
-    request.yar.set('user', {});
+    request.yar.set('user', null);
     return reply.redirect('/');
 }
 
@@ -46,7 +67,9 @@ function signup(request, reply) {
 
     return UserService.signup(data, (err, payload) => {
         if (err) {
-            return reply(err);
+            return reply.view('signup', {
+                error: parseErrorObject(err)
+            }); 
         }
 
         const {

@@ -42,7 +42,6 @@ function signup(data, callback) {
 
     return Wreck.post(`${USER_API_BASE}/signup`, options, (err, response, payload) => {
         if (err) {
-            console.log('error: ', err);
             return callback(err);
         }
         return callback(null, payload);
