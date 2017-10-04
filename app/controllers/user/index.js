@@ -1,15 +1,22 @@
 'use strict';
 
 const UserService = require('./../../services/user');
-const Boom = require('boom');
 
+const Boom = require('boom');
 const Wreck = require('wreck');
+const jwtDecode = require('jwt-decode');
 
 function parseErrorObject(err) {
     const output = {};
-    const error = err.data && err.data.payload;
-        
+    const error = err.data ? err.data.payload : err;
+    
+    if (!error) {
+        return output;
+    }
+
     switch(error.code) {
+    case 'EAI_AGAIN':
+        output.username = 'The request timed out';
     case 'NotAuthorizedException':
     case 'UserNotFoundException':
         output.username = error.message;
@@ -47,7 +54,19 @@ function login(request, reply) {
             });
         }
 
-        request.yar.set('user', payload)
+        const {
+            email,
+            email_verified,
+            name
+        } = jwtDecode(payload.idToken.jwtToken);
+
+        request.yar.set('user', {
+            email,
+            email_verified,
+            name,
+            tokens: payload
+        });
+
         return reply.redirect('/dashboard');
     });
 }

@@ -26,16 +26,20 @@ function createRemote(ownedBy, temperature, name, callback) {
     });
 }
 
-function fetchRemotes(id, callback) {
-
+function list(idToken, callback) {
     const options = {
-        json: true
+        json: true,
+        headers: {
+            Authorization: `Bearer ${idToken}`
+        }
     };
 
-    return Wreck.get(`${API_BASE}/remotes?ownedBy={id}`, options, (err, res, payload) => {
+    return Wreck.get(`${API_BASE}/remotes`, options, (err, res, payload) => {
         if (err) {
+            debugger;
             return callback(err);
         }
+        debugger;
         return callback(null, payload);
     });
 }
@@ -69,6 +73,6 @@ function updateRemote(data, callback) {
 
 module.exports = {
     createRemote,
-    fetchRemotes,
+    list,
     updateRemote
 };
