@@ -18,7 +18,7 @@ services:
             - COOKIE_HASH=gSha8kecFe2rCS8eGAughJfbwsfEEdDYykhA5QRdJjxfPK42
             - API_ROOT=/api/v1/
             - USER_API_BASE=https://aq0fp63k2b.execute-api.us-east-1.amazonaws.com/dev
-            - REMOTE_API_BASE=https://2l4y9lieb3.execute-api.us-east-1.amazonaws.com/dev
+            - REMOTE_API_BASE=https://ej9kmqtnk0.execute-api.us-east-1.amazonaws.com/dev
             - FB_APP_ID=151031348826889
             - FB_APP_SECRET=e41bcbd13588152e8ab3d0200bdb093e
             - SOCIAL_LOGIN_REDIRECT=http://localhost/api/v1/social-login

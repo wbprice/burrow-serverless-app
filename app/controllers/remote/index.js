@@ -3,10 +3,11 @@
 const RemoteService = require('./../../services/remote');
 
 function createRemote(request, reply) {
-    const { id } = request.yar.get('user');
+    const user = request.yar.get('user');
+    const idToken = user && user.tokens.idToken.jwtToken;
     const { temperature, name } = request.payload;
 
-    return RemoteService.createRemote(id, temperature, name, (err, payload) => {
+    return RemoteService.create(idToken, temperature, name, (err, payload) => {
         // If error
         if (err) {
             return reply(err);
@@ -17,11 +18,10 @@ function createRemote(request, reply) {
 }
 
 function updateRemote(request, reply) {
+    const user = request.yar.get('user');
+    const idToken = user && user.tokens.idToken.jwtToken;
+    const { temperature, name } = request.payload;
     const { id } = request.params;
-    const {
-        name,
-        temperature
-    } = request.payload;
 
     const data = {
         id,
@@ -29,9 +29,12 @@ function updateRemote(request, reply) {
         temperature
     };
 
-    return RemoteService.updateRemote(data, (err, payload) => {
+    debugger
+
+    return RemoteService.update(idToken, data, (err, payload) => {
+        debugger;
         if (err) {
-            return reply('oh no');
+            return reply(err);
         }
         return reply.redirect('/dashboard');
     });

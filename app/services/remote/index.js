@@ -4,15 +4,15 @@ const Wreck = require('wreck');
 
 const API_BASE = process.env.REMOTE_API_BASE || '';
 
-function createRemote(ownedBy, temperature, name, callback) {
+function create(idToken, temperature, name, callback) {
 
     const options = {
-        headers: {
-            'Content-Type': 'application/json'
-        },
         json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${idToken}`
+        },
         payload: JSON.stringify({
-            ownedBy,
             temperature,
             name
         })
@@ -36,15 +36,13 @@ function list(idToken, callback) {
 
     return Wreck.get(`${API_BASE}/remotes`, options, (err, res, payload) => {
         if (err) {
-            debugger;
             return callback(err);
         }
-        debugger;
         return callback(null, payload);
     });
 }
 
-function updateRemote(data, callback) {
+function update(idToken, data, callback) {
 
     const {
         id,
@@ -54,7 +52,8 @@ function updateRemote(data, callback) {
 
     const options = {
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${idToken}`
         },
         json: true,
         payload: JSON.stringify({
@@ -72,7 +71,7 @@ function updateRemote(data, callback) {
 }
 
 module.exports = {
-    createRemote,
+    create,
     list,
-    updateRemote
+    update
 };
