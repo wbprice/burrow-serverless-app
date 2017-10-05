@@ -27,3 +27,10 @@
 
     <button type="submit">Update</button>
 </form>
+
+{{#if id}}
+<form action="/api/v1/remote/{{id}}" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button type="submit">Delete</button>
+</form>
+{{/if}}

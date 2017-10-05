@@ -17,11 +17,28 @@ function createRemote(request, reply) {
     });
 }
 
+function destroyRemote(request, reply) {
+    const user = request.yar.get('user');
+    const idToken = user && user.tokens.idToken.jwtToken;
+    const { id } = request.params;
+
+    return RemoteService.destroy(idToken, id, (err, payload) => {
+        if (err) {
+            reply(err);
+        }
+        reply.redirect('/dashboard');
+    });
+}
+
 function updateRemote(request, reply) {
     const user = request.yar.get('user');
     const idToken = user && user.tokens.idToken.jwtToken;
-    const { temperature, name } = request.payload;
+    const { _method, temperature, name } = request.payload;
     const { id } = request.params;
+
+    if (_method === 'DELETE') {
+        return destroyRemote(request, reply);
+    }
 
     const data = {
         id,
