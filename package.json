@@ -4,7 +4,8 @@
   "description": "Serves the web frontend for Burrow",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "homepage": "https://github.com/wbprice/burrow-serverless-app#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "gulp-hb": "^6.0.2",
     "handlebars": "^4.0.10",
     "hapi": "^16.4.3",
     "inert": "^4.2.0",
@@ -36,6 +38,8 @@
     "eslint-plugin-node": "^5.2.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "gulp": "^3.9.1",
+    "handlebars-layouts": "^3.1.4",
     "nodemon": "^1.11.0"
   }
 }
