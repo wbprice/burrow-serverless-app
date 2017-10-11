@@ -27,10 +27,16 @@
     "hapi": "^16.4.3",
     "inert": "^4.2.0",
     "jwt-decode": "^2.2.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "vision": "^4.1.1",
     "yar": "^8.1.2"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
     "eslint": "^4.2.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-config-trails": "^3.0.0",
@@ -39,6 +45,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
     "handlebars-layouts": "^3.1.4",
     "nodemon": "^1.11.0"
   }
