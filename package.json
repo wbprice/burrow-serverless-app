@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp watch",
     "build": "gulp"
   },
   "repository": {
@@ -22,6 +23,7 @@
   "homepage": "https://github.com/wbprice/burrow-serverless-app#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "gulp-concat-css": "^2.3.0",
     "gulp-hb": "^6.0.2",
     "handlebars": "^4.0.10",
     "hapi": "^16.4.3",
@@ -46,11 +48,14 @@
     "eslint-plugin-node": "^5.2.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "express": "^4.16.2",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
+    "gulp-watch": "^4.3.11",
     "gulp-webpack": "^1.5.0",
+    "gulp-webserver": "^0.9.1",
     "handlebars-layouts": "^3.1.4",
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.12.1",
     "through2": "^2.0.3",
     "through2-map": "^3.0.0",
     "vinyl-named": "^1.1.0"

@@ -12,7 +12,7 @@ export default class Layout extends Component {
                 <head>
                     <title>Burrow</title>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
-                    <link rel="stylesheet" href="/assets/css/style.css" />
+                    <link rel="stylesheet" href="/style.css" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                 </head>
 
