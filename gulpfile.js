@@ -6,7 +6,7 @@ const path = require('path');
 const compileTemplates = require('./tasks/compileTemplates');
 
 gulp.task('compileTemplates', () => compileTemplates({
-    src: path.join(__dirname, 'app/assets/js/pages/Index.js'),
+    src: path.join(__dirname, 'app/assets/js/pages/**.js'),
     dest: './dist'
 }));
 
