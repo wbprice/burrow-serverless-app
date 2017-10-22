@@ -19,7 +19,7 @@ gulp.task('compileStyles', () => compileStyles({
 }));
 
 gulp.task('startWebserver', () => startWebserver({
-    src: './dist'
+    src: path.join(__dirname, 'dist')
 }));
 
 gulp.task('default', [
@@ -28,11 +28,12 @@ gulp.task('default', [
 ]);
 
 gulp.task('watch:assets', function() {
-    gulp.watch('app/**/**.css', ['compileStyles']);
-    gulp.watch('app/**/**.js', ['compileTemplates']);
+    gulp.watch('./**/**.css', ['compileStyles']);
+    gulp.watch('./**/**.js', ['compileTemplates']);
 });
 
 gulp.task('watch', [
     'startWebserver',
     'watch:assets'
 ]);
+
