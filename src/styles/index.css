@@ -1,0 +1,29 @@
+.index {
+    text-align: center;
+}
+
+.index .hero img {
+    max-width: 50%;
+    margin-bottom: 1.25em;
+}
+
+.index .hero .call-to-action h1 {
+    font-size: 3em;
+    margin-bottom: 0.125em;
+}
+
+.index .hero .call-to-action p {
+    font-size: 1.25em;
+}
+
+.index .take-action a.button {
+    display: block;
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    font-size: 1.125em;
+}
+
+.index .take-action a.button.primary {
+    margin-bottom: .5em;
+}
