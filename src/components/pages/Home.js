@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
+import { Link } from 'react-router-dom';
+
 import AirConditioner from './../../images/air-conditioner.png';
 
 export default class Home extends Component {
@@ -13,15 +15,11 @@ export default class Home extends Component {
                         <p>Burrow helps apartment-dwellers automate their air conditioners</p>
                     </div>
                     <div className="take-action">
-                        <a className="button primary big" href="/signup">Get Started</a>
-                        <a className="button big" href="/login">Login</a>
+                        <Link to="/signup" className="button primary big">Get Started</Link>
+                        <Link to="/login" className="button big">Login</Link>
                     </div>
                 </div>
             </div>
         )
     }
-}
-
-Home.propTypes = {
-
 }

@@ -11,4 +11,6 @@ export default class Card extends Component {
     }
 }
 
-Card.propTypes = {}
+Card.propTypes = {
+    children: PropTypes.any
+}
