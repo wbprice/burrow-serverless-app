@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 import {
     setUsername,
-    setPassword
+    setPassword,
+    login
 } from './../../store/actions/login-actions';
 
 class LoginForm extends Component {
@@ -22,9 +23,17 @@ class LoginForm extends Component {
         this.props.dispatch(setPassword(event.target.value));
     }
 
+    login(event) {
+        event.preventDefault();
+        this.props.dispatch(login(
+            this.props.username.value,
+            this.props.password.value
+        ))
+    }
+
     render() {
         return (
-            <form action="/login" method="post">
+            <form onSubmit={this.login.bind(this)} action="/login" method="post">
                 <div>
                     <label htmlFor="emailAddress">Email Address</label>
                     <input 
@@ -42,7 +51,14 @@ class LoginForm extends Component {
 
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input required name="password" id="password" placeholder="Password" type="password" />
+                    <input 
+                        onChange={this.setPassword.bind(this)}
+                        value={this.props.password.value}
+                        required 
+                        name="password" 
+                        id="password" 
+                        placeholder="Password" 
+                        type="password" />
                     { this.props.password.error &&
                         <p className="error-text">{this.props.password.error}</p>
                     }

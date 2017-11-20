@@ -25,7 +25,13 @@ export default function loginReducer(state = initialState, action) {
             return update(state, {
                 username: { $set: { value: action.username } }
             });
+
+        case SET_PASSWORD:
+            return update(state, {
+                password: { $set: { value: action.password } }
+            });
+
         default: 
             return state;
+        }
     }
-}

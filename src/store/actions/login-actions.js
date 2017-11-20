@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import checkStatus from './../checkStatus';
 
-const loginUrl = 'https://aq0fp63k2b.execute-api.us-east-1.amazonaws.com/dev/login';
+const loginUrl = 'https://iqeruruex1.execute-api.us-east-1.amazonaws.com/dev/login';
 
 export const SET_USERNAME = 'SET_USERNAME';
 export const SET_PASSWORD = 'SET_PASSWORD';
@@ -57,7 +57,6 @@ export function login(username, password) {
         .then(checkStatus)
         .then(response => response.json())
         .then(loginSuccess)
-        .catch(error => error.json())
-        .then(loginFailure)
+        .catch(loginFailure)
     };
 }
