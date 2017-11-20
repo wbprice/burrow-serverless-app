@@ -12,7 +12,7 @@ export default class Input extends Component {
     render() {
         return (
             <div>
-                <label htmlFor={this.props.name}>Email Address</label>
+                <label htmlFor={this.props.name}>{this.props.label}</label>
                 <input 
                     onChange={this.props.onChange}
                     value={this.props.value}
@@ -20,7 +20,7 @@ export default class Input extends Component {
                     name={this.props.name} 
                     id={this.props.name}
                     placeholder={this.props.label}
-                    type={this.props.type} /> 
+                    type={this.props.type || 'text'} />
                 { this.props.error &&
                     <p className="error-text">{this.props.error}</p>
                 }
