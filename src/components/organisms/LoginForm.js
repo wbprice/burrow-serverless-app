@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
+import Input from './../molecules/Input'
+
 import {
     setUsername,
     setPassword,
@@ -34,35 +36,23 @@ class LoginForm extends Component {
     render() {
         return (
             <form onSubmit={this.login.bind(this)} action="/login" method="post">
-                <div>
-                    <label htmlFor="emailAddress">Email Address</label>
-                    <input 
-                        onChange={this.setUsername.bind(this)}
-                        value={this.props.username.value}
-                        required 
-                        name="emailAddress" 
-                        id="emailAddress" 
-                        placeholder="Email Address" 
-                        type="email" /> 
-                    { this.props.username.error &&
-                        <p className="error-text">{this.props.username.error}</p>
-                    }
-                </div>
+                <Input
+                    onChange={this.setUsername.bind(this)}
+                    value={this.props.username.value}
+                    error={this.props.username.error}
+                    required
+                    name="emailAddress"
+                    label="Email Address"
+                    type="email" />
 
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input 
-                        onChange={this.setPassword.bind(this)}
-                        value={this.props.password.value}
-                        required 
-                        name="password" 
-                        id="password" 
-                        placeholder="Password" 
-                        type="password" />
-                    { this.props.password.error &&
-                        <p className="error-text">{this.props.password.error}</p>
-                    }
-                </div>
+                <Input
+                    onChange={this.setPassword.bind(this)}
+                    value={this.props.password.value}
+                    error={this.props.password.error}
+                    required
+                    name="password"
+                    label="Password"
+                    type="password" />
 
                 <button className="primary" type="submit">Submit</button>
             </form>
