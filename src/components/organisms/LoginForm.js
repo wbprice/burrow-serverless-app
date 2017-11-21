@@ -6,10 +6,13 @@ import { connect } from 'react-redux';
 import Input from './../molecules/Input'
 
 import {
-    setUsername,
-    setPassword,
     login
 } from './../../store/actions/login-actions';
+
+import {
+    setEmailAddress,
+    setPassword
+} from './../../store/actions/signup-actions';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -17,8 +20,8 @@ class LoginForm extends Component {
         this.state = {};
     }
 
-    setUsername(event) {
-        this.props.dispatch(setUsername(event.target.value));
+    setEmailAddress(event) {
+        this.props.dispatch(setEmailAddress(event.target.value));
     }
 
     setPassword(event) {
@@ -28,7 +31,7 @@ class LoginForm extends Component {
     login(event) {
         event.preventDefault();
         this.props.dispatch(login(
-            this.props.username.value,
+            this.props.emailAddress.value,
             this.props.password.value
         ))
     }
@@ -37,9 +40,9 @@ class LoginForm extends Component {
         return (
             <form onSubmit={this.login.bind(this)} action="/login" method="post">
                 <Input
-                    onChange={this.setUsername.bind(this)}
-                    value={this.props.username.value}
-                    error={this.props.username.error}
+                    onChange={this.setEmailAddress.bind(this)}
+                    value={this.props.emailAddress.value}
+                    error={this.props.emailAddress.error}
                     required
                     name="emailAddress"
                     label="Email Address"
@@ -66,7 +69,7 @@ LoginForm.propTypes = {
 
 export default connect((state) => {
     return {
-        username: state.login.username,
+        emailAddress: state.login.emailAddress,
         password: state.login.password
     }
 })(LoginForm);

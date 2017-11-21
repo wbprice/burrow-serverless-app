@@ -3,29 +3,42 @@ import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux';
 
+import {
+    setUsername,
+    setPassword,
+    setEmailAddress,
+    setConfirmPassword,
+    signup
+} from './../../store/actions/signup-actions';
+
 import Input from './../molecules/Input'
 
 class SignupForm extends Component {
 
     setName(event) {
-
+        this.props.dispatch(setUsername(event.target.value))
     }
 
     setEmailAddress(event) {
-
+        this.props.dispatch(setEmailAddress(event.target.value))
     }
 
     setPassword(event) {
-
+        this.props.dispatch(setPassword(event.target.value))
     }
 
     setConfirmPassword(event) {
+        this.props.dispatch(setConfirmPassword(event.target.value))
+    }
 
+    signup(event) {
+        event.preventDefault();
+        this.props.dispatch(signup());
     }
 
     render() {
         return (
-            <form action="/signup" method="post">
+            <form onSubmit={this.signup.bind(this)}>
                 <Input
                     name="name"
                     label="Name"
@@ -43,6 +56,7 @@ class SignupForm extends Component {
                 <Input
                     name="name"
                     label="Password"
+                    type="password"
                     onChange={this.setPassword.bind(this)}
                     value={this.props.password.value}
                     error={this.props.password.error} />
@@ -50,6 +64,7 @@ class SignupForm extends Component {
                 <Input
                     name="name"
                     label="Confirm Password"
+                    type="password"
                     onChange={this.setConfirmPassword.bind(this)}
                     value={this.props.confirmPassword.value}
                     error={this.props.confirmPassword.error} />
