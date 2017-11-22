@@ -39,7 +39,11 @@ export function login(emailAddress, password) {
         })
         .then(checkStatus)
         .then(response => response.json())
-        .then(loginSuccess)
-        .catch(loginFailure)
+        .then(response => {
+            dispatch(loginSuccess(response))
+        })
+        .catch(error => {
+            dispatch(loginFailure(JSON.parse(error.message)));
+        })
     };
 }

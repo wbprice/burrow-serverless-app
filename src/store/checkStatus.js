@@ -3,6 +3,8 @@ export default function checkStatus(response) {
         return response
     }
     else {
-        throw new Error(response)
+        return response.json().then(error => {
+            throw new Error(JSON.stringify(error));
+        })
     }
 }

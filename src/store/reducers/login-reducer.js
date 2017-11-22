@@ -1,5 +1,7 @@
 import update from 'immutability-helper';
 
+import handleError from './../utils/loginErrors'
+
 import {
     SET_EMAIL_ADDRESS,
     SET_PASSWORD
@@ -8,7 +10,7 @@ import {
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE 
+    LOGIN_FAILURE
 } from './../actions/login-actions';
 
 const initialState = {
@@ -33,6 +35,9 @@ export default function loginReducer(state = initialState, action) {
             return update(state, {
                 password: { $set: { value: action.password } }
             });
+
+        case LOGIN_FAILURE:
+            return Object.assign({}, state, handleError(action.error));
 
         default: 
             return state;

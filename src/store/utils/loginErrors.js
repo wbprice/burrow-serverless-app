@@ -1,8 +1,20 @@
 'use strict';
 
 export default function handleError(error) {
-    switch(error.type) {
+    debugger;
+    switch(error.code) {
+        case 'UserNotFoundException':
+        case 'NotAuthorizedException':
+            return { 
+                emailAddress: {
+                    error: 'That username/password doesn\'t work'
+                }
+            };
         default:
-            return { status: 500, message: 'Something went wrong.'};
+            return { 
+                emailAddress: {
+                    error: 'Something went wrong'
+                }
+            }
     }
 }

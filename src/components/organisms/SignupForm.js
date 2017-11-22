@@ -42,6 +42,7 @@ class SignupForm extends Component {
                 <Input
                     name="name"
                     label="Name"
+                    help="What username will you login with?"
                     onChange={this.setName.bind(this)}
                     name={this.props.name.value}
                     error={this.props.name.error} />
@@ -49,6 +50,7 @@ class SignupForm extends Component {
                 <Input
                     name="emailAddress"
                     label="Email Address"
+                    help="Contact email address for verifying your account"
                     onChange={this.setEmailAddress.bind(this)}
                     value={this.props.emailAddress.value}
                     error={this.props.emailAddress.error} />
@@ -57,6 +59,7 @@ class SignupForm extends Component {
                     name="name"
                     label="Password"
                     type="password"
+                    help="Enter your desired password"
                     onChange={this.setPassword.bind(this)}
                     value={this.props.password.value}
                     error={this.props.password.error} />
@@ -65,6 +68,7 @@ class SignupForm extends Component {
                     name="name"
                     label="Confirm Password"
                     type="password"
+                    help="Confirm your password"
                     onChange={this.setConfirmPassword.bind(this)}
                     value={this.props.confirmPassword.value}
                     error={this.props.confirmPassword.error} />

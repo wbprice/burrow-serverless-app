@@ -11,7 +11,7 @@ export default class Input extends Component {
 
     render() {
         return (
-            <div>
+            <div className={`input ${this.props.error && 'error'}`}>
                 <label htmlFor={this.props.name}>{this.props.label}</label>
                 <input 
                     onChange={this.props.onChange}
@@ -21,8 +21,11 @@ export default class Input extends Component {
                     id={this.props.name}
                     placeholder={this.props.label}
                     type={this.props.type || 'text'} />
+                { !this.props.error && this.props.help &&
+                    <div className="help-text">{this.props.help}</div>
+                }
                 { this.props.error &&
-                    <p className="error-text">{this.props.error}</p>
+                    <div className="error-text">{this.props.error}</div>
                 }
             </div>
         )
@@ -37,4 +40,5 @@ Input.propTypes = {
     name: PropTypes.string,
     label: PropTypes.string,
     type: PropTypes.string,
+    explanation: PropTypes.string
 }
