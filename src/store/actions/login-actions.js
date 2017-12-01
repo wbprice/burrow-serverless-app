@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import checkStatus from './../checkStatus';
+import { push } from 'react-router-redux'
 
 const loginUrl = 'https://iqeruruex1.execute-api.us-east-1.amazonaws.com/dev/login';
 
@@ -40,7 +41,8 @@ export function login(emailAddress, password) {
         .then(checkStatus)
         .then(response => response.json())
         .then(response => {
-            dispatch(loginSuccess(response))
+            dispatch(loginSuccess(response));
+            dispatch(push('/dashboard'));
         })
         .catch(error => {
             dispatch(loginFailure(JSON.parse(error.message)));

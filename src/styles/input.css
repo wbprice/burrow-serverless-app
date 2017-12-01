@@ -1,0 +1,29 @@
+.input {
+    position: relative;
+    padding-bottom: 1em;
+}
+
+.input label {
+    font-size: .75em;
+    margin-bottom: 0;
+    padding-left: .125em;
+}
+
+.input input {
+    margin-bottom: 0;
+}
+
+.input.error input {
+    border-color: red;
+}
+
+.input .help-text, .input .error-text {
+    font-size: .85em;
+    padding-left: .125em;
+    line-height: 2em;
+}
+
+.input .error-text {
+    color: red;
+    font-weight: bold;
+}

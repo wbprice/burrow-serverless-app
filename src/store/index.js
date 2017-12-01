@@ -1,19 +1,22 @@
 import thunk from 'redux-thunk';
 import { logger } from 'redux-logger';
-
-import { 
-    createStore, 
-    applyMiddleware 
-} from 'redux';
-
+import { routerMiddleware, routerReducer } from 'react-router-redux';
+import { createStore, applyMiddleware, compose} from 'redux'; 
+import persistState from 'redux-localstorage';
 import reducer from './reducers';
+import createHistory from 'history/createBrowserHistory';
 
+export const history = createHistory();
 const middleware = [
-    thunk
+    thunk,
+    routerMiddleware(history)
 ]
 
-if (process && process.env.NODE_ENV === 'developer') {
+if (process && process.env.NODE_ENV !== 'production') {
     middleware.push(logger);
 }
 
-export default createStore(reducer, applyMiddleware(...middleware));
+export default createStore(reducer, compose(
+    applyMiddleware(...middleware),
+    persistState('tokens', {key: 'tokens'})
+));
