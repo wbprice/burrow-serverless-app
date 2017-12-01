@@ -33,6 +33,9 @@ export function login(emailAddress, password) {
         dispatch(loginRequest());
         fetch(loginUrl, {
             method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 username: emailAddress,
                 password
