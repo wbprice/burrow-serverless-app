@@ -18,5 +18,5 @@ if (process && process.env.NODE_ENV !== 'production') {
 
 export default createStore(reducer, compose(
     applyMiddleware(...middleware),
-    persistState('tokens', {key: 'tokens'})
+    persistState('user', {key: 'user'})
 ));
