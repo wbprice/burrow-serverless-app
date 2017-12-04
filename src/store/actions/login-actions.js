@@ -2,11 +2,14 @@ import fetch from 'isomorphic-fetch';
 import checkStatus from './../checkStatus';
 import { push } from 'react-router-redux'
 
-const loginUrl = 'https://iqeruruex1.execute-api.us-east-1.amazonaws.com/dev/login';
+import { getUserInfo } from './../actions/user-actions';
+
+const loginUrl = 'https://69w7wrgi7c.execute-api.us-east-1.amazonaws.com/dev/login';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
 
 function loginRequest() {
     return {
@@ -46,9 +49,10 @@ export function login(emailAddress, password) {
         .then(response => {
             dispatch(loginSuccess(response));
             dispatch(push('/dashboard'));
+            dispatch(getUserInfo(response.accessToken.jwtToken))
         })
         .catch(error => {
-            dispatch(loginFailure(JSON.parse(error.message)));
+            dispatch(loginFailure(JSON.parse(error)));
         })
     };
 }

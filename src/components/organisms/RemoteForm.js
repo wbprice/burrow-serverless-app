@@ -7,7 +7,7 @@ export default class RemoteForm extends Component {
             <div>
                 <form action={`/api/v1/remote/${this.props.id}`} method="post">
                     <div>
-                        <label for="temperature">Temperature</label>
+                        <label htmlFor="temperature">Temperature</label>
                         <input 
                             required 
                             name="temperature" 
@@ -18,7 +18,7 @@ export default class RemoteForm extends Component {
                     </div>
                 
                     <div>
-                        <label for="name">Remote Name</label>
+                        <label htmlFor="name">Remote Name</label>
                         <input 
                             required 
                             name="name" 

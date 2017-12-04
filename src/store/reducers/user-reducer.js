@@ -6,16 +6,27 @@ import {
     LOGIN_SUCCESS
 } from './../actions/login-actions'
 
+import {
+    GET_USER_INFO_REQUEST,
+    GET_USER_INFO_SUCCESS,
+    GET_USER_INFO_FAILURE
+} from './../actions/user-actions'
+
 const initialState = {
     tokens: {}
 };
 
-export default function tokensReducer(state = initialState, action) {
+export default function userReducer(state = initialState, action) {
     switch(action.type) {
         case LOGIN_SUCCESS:
             return Object.assign({}, state, {
                 tokens: action.response
             })
+
+        case GET_USER_INFO_REQUEST:
+        case GET_USER_INFO_FAILURE:
+        case GET_USER_INFO_SUCCESS:
+            return Object.assign({}, state, action.response)
 
         default:
             return state;

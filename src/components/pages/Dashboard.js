@@ -23,7 +23,7 @@ class Dashboard extends Component {
                 })}
 
                 { !this.props.remotes.length &&
-                    <div class="card">
+                    <div className="card">
                         <h2>DEBUG</h2>
                         <p>There aren't any remotes!  You should create one.</p>
                         <RemoteForm />

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+
+import { connect } from 'react-redux'
 
 import { Link } from 'react-router'
 
-export default class Header extends Component {
+class Header extends Component {
     render() {
         return (
             <section className="header">
@@ -14,11 +16,8 @@ export default class Header extends Component {
                     <nav>
                         <ul className="navbar-list">
                             {
-                              this.props.user && this.props.user.name ? [
-                                <a href="/dashboard"><li class="navbar-item">Dashboard</li></a>,
-                                <a href="/help"><li class="navbar-item">Help</li></a>,
-                                <li className="navbar-item">{this.props.user.name} <a href="/logout">Logout</a></li>
-                              ] : 
+                              this.props.user && this.props.user.name ?
+                              <li className="navbar-item">{this.props.user.name} <a href="/logout">Logout</a></li>:
                               <li className="navbar-item"><a href="/login">Login</a></li>
                             }
                         </ul>
@@ -32,3 +31,9 @@ export default class Header extends Component {
 Header.propTypes = {
     user: PropTypes.object
 };
+
+export default connect((state) => {
+    return {
+        user: state.user
+    }
+})(Header)
