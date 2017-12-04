@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { connect } from 'react-redux';
+
 import RemoteForm from './../organisms/RemoteForm';
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
     render() {
         return (
             <div class="container">
@@ -12,7 +14,7 @@ export default class Dashboard extends Component {
 
                 {this.props.remotes.map(remote => {
                     return (
-                        <RemoteForm 
+                        <RemoteForm
                             id={remote.id}
                             temperature={remote.temperature}
                             name={remote.name}
@@ -35,3 +37,9 @@ export default class Dashboard extends Component {
 Dashboard.propTypes = {
     remotes: PropTypes.array
 }
+
+export default connect((state) => {
+    return {
+        remotes: state.dashboard.remotes
+    }
+})(Dashboard)
