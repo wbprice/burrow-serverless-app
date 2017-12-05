@@ -76,7 +76,7 @@ export default function dashboardReducer(state = initialState, action) {
         case UPDATE_REMOTE_SUCCESS:
             return update(state, {
                 [state.remotes.findIndex(r => r.id === action.id)]: {
-                    $set: action.response
+                    $set: mungeRemote(action.response)
                 }
             })
 
