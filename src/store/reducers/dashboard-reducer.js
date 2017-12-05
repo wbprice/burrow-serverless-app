@@ -3,9 +3,9 @@ import update from 'immutability-helper'
 import {
     SET_REMOTE_NAME,
     SET_REMOTE_TEMPERATURE,
-    FETCH_REMOTES_REQUEST,
     FETCH_REMOTES_SUCCESS,
-    FETCH_REMOTES_FAILURE 
+    FETCH_REMOTES_FAILURE,
+    UPDATE_REMOTE_SUCCESS,
 } from './../actions/dashboard-actions';
 
 const initialState = {
@@ -37,9 +37,6 @@ function mungeRemote(remote) {
 export default function dashboardReducer(state = initialState, action) {
     switch(action.type) {
 
-        case FETCH_REMOTES_REQUEST:
-            return state;
-
         case FETCH_REMOTES_SUCCESS:
             return update(state, {
                 remotes: { $set: action.response.map(mungeRemote) }
@@ -54,7 +51,13 @@ export default function dashboardReducer(state = initialState, action) {
                     debug: { name: {$set: {value: action.name}}}
                 })
             }
-            return state
+            return update(state, {
+                remotes: {
+                    [state.remotes.findIndex(r => r.id === action.id)]: {
+                        name: { $set: { value: action.name } }
+                    }
+                }
+            })
 
         case SET_REMOTE_TEMPERATURE:
             if (!action.id) {
@@ -62,7 +65,20 @@ export default function dashboardReducer(state = initialState, action) {
                     debug: { temperature: {$set: {value: action.temperature}}}
                 })
             }
-            return state
+            return update(state, {
+                remotes: {
+                    [state.remotes.findIndex(r => r.id === action.id)]: {
+                        temperature: { $set: { value: action.temperature } }
+                    }
+                }
+            })
+
+        case UPDATE_REMOTE_SUCCESS:
+            return update(state, {
+                [state.remotes.findIndex(r => r.id === action.id)]: {
+                    $set: action.response
+                }
+            })
 
         default:
             return state;

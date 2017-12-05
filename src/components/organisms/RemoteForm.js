@@ -7,20 +7,21 @@ import Input from './../molecules/Input'
 import {
     setRemoteTemperature,
     setRemoteName,
-    createRemote
+    createRemote,
+    updateRemote
 } from './../../store/actions/dashboard-actions'
 
 class RemoteForm extends Component {
 
     setTemperature(event) {
-        this.props.dispatch(setRemoteTemperature(
+        return this.props.dispatch(setRemoteTemperature(
             this.props.id, 
             event.target.value
         ))
     }
 
     setName(event) {
-        this.props.dispatch(setRemoteName(
+        return this.props.dispatch(setRemoteName(
             this.props.id,
             event.target.value
         ))
@@ -28,7 +29,15 @@ class RemoteForm extends Component {
 
     onSubmit(event) {
         event.preventDefault()
-        this.props.dispatch(createRemote(
+        if (this.props.id) {
+            return this.props.dispatch(updateRemote(
+                this.props.idToken,
+                this.props.id,
+                this.props.temperature.value,
+                this.props.name.value
+            ))
+        }
+        return this.props.dispatch(createRemote(
             this.props.idToken,
             this.props.temperature.value,
             this.props.name.value
