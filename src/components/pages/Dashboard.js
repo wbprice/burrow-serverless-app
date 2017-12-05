@@ -18,12 +18,13 @@ class Dashboard extends Component {
                 <h1>Dashboard</h1>
                 <p>Manage your remotes here</p>
 
-                {this.props.remotes.map(remote => {
+                {this.props.remotes.map((remote, index) => {
                     return (
                         <RemoteForm
-                            key={remote.id}
-                            dispatch={this.props.dispatch}
                             id={remote.id}
+                            key={remote.id}
+                            idToken={this.props.idToken}
+                            dispatch={this.props.dispatch}
                             temperature={remote.temperature}
                             name={remote.name}
                         />

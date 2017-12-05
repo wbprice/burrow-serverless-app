@@ -100,8 +100,8 @@ export function createRemote(token, temperature, name) {
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
-                name,
-                temperature
+                temperature,
+                name
             })
         })
         .then(checkStatus)
@@ -111,6 +111,55 @@ export function createRemote(token, temperature, name) {
         })
         .catch(error => {
             dispatch(createRemoteFailure(error))
+        })
+    }
+}
+
+export const UPDATE_REMOTE_REQUEST = 'UPDATE_REMOTE_REQUEST';
+export const UPDATE_REMOTE_SUCCESS = 'UPDATE_REMOTE_SUCCESS';
+export const UPDATE_REMOTE_FAILURE = 'UPDATE_REMOTE_FAILURE';
+
+function updateRemoteRequest() {
+    return {
+        type: UPDATE_REMOTE_REQUEST
+    }
+}
+
+function updateRemoteSuccess(response) {
+    return {
+        type: UPDATE_REMOTE_SUCCESS,
+        response
+    }
+}
+
+function updateRemoteFailure(error) {
+    return {
+        type: UPDATE_REMOTE_FAILURE,
+        error
+    }
+}
+
+export function updateRemote(token, id, temperature, name) {
+    return dispatch => {
+        dispatch(updateRemoteRequest())
+        return fetch(`${remotesUrl}/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                temperature,
+                name
+            })
+        })
+        .then(checkStatus)
+        .then(response => response.json())
+        .then(response => {
+            dispatch(updateRemoteSuccess(response))
+        })
+        .catch(error => {
+            dispatch(updateRemoteFailure(error))
         })
     }
 }
