@@ -47,9 +47,11 @@ export function login(emailAddress, password) {
         .then(checkStatus)
         .then(response => response.json())
         .then(response => {
-            dispatch(loginSuccess(response));
-            dispatch(push('/dashboard'));
-            dispatch(getUserInfo(response.accessToken.jwtToken))
+            const accessToken = response.accessToken.jwtToken;
+            const idToken = response.idToken.jwtToken;
+            dispatch(loginSuccess(response))
+            dispatch(push('/dashboard'))
+            dispatch(getUserInfo(accessToken))
         })
         .catch(error => {
             dispatch(loginFailure(JSON.parse(error)));

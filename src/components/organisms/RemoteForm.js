@@ -1,49 +1,73 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class RemoteForm extends Component {
+import { connect } from 'react-redux';
+
+import Input from './../molecules/Input'
+import {
+    setRemoteTemperature,
+    setRemoteName,
+    createRemote
+} from './../../store/actions/dashboard-actions'
+
+class RemoteForm extends Component {
+
+    setTemperature(event) {
+        this.props.dispatch(setRemoteTemperature(
+            this.props.id, 
+            event.target.value
+        ))
+    }
+
+    setName(event) {
+        this.props.dispatch(setRemoteName(
+            this.props.id,
+            event.target.value
+        ))
+    }
+
+    onSubmit(event) {
+        event.preventDefault()
+        this.props.dispatch(createRemote(
+            this.props.idToken,
+            this.props.temperature.value,
+            this.props.name.value
+        ))
+    }
+
     render() {
         return (
-            <div>
-                <form action={`/api/v1/remote/${this.props.id}`} method="post">
-                    <div>
-                        <label htmlFor="temperature">Temperature</label>
-                        <input 
-                            required 
-                            name="temperature" 
-                            id="temperature" 
-                            placeholder="72" 
-                            type="number"
-                            value={this.props.temperature} />
-                    </div>
-                
-                    <div>
-                        <label htmlFor="name">Remote Name</label>
-                        <input 
-                            required 
-                            name="name" 
-                            id="name" 
-                            placeholder="Name (eg. Living Room)" 
-                            type="text"
-                            value={this.props.name} />
-                    </div>
-                
-                    <button type="submit">Update</button>
-                </form>
-                
-                { this.props.id && 
-                    <form action={`/api/v1/remote/${this.props.id}`} method="post">
-                        <input type="hidden" name="_method" value="DELETE" />
-                        <button type="submit">Delete</button>
-                    </form>
-                }
-            </div>
+            <form 
+                onSubmit={this.onSubmit.bind(this)}>
+                <Input
+                    onChange={this.setTemperature.bind(this)}
+                    value={this.props.temperature.value}
+                    error={this.props.temperature.error}
+                    required
+                    name="temperature"
+                    label="Temperature"
+                    type="number" />
+
+                <Input
+                    onChange={this.setName.bind(this)}
+                    value={this.props.name.value}
+                    error={this.props.name.error}
+                    required
+                    name="name"
+                    label="Name"
+                    type="text" />
+            
+                <button type="submit">Update</button>
+            </form>
         )
     }
 }
 
 RemoteForm.propTypes = {
-    id: PropTypes.number,
-    temperature: PropTypes.number,
-    name: PropTypes.string
+    id: PropTypes.string,
+    temperature: PropTypes.object,
+    name: PropTypes.object,
+    idToken: PropTypes.string
 };
+
+export default RemoteForm;

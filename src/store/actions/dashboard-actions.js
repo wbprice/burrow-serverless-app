@@ -1,0 +1,116 @@
+import checkStatus from './../checkStatus'
+import fetch from 'isomorphic-fetch'
+
+export const FETCH_REMOTES_REQUEST = 'FETCH_REMOTES_REQUEST';
+export const FETCH_REMOTES_SUCCESS = 'FETCH_REMOTES_SUCCESS';
+export const FETCH_REMOTES_FAILURE = 'FETCH_REMOTES_FAILURE';
+
+const remotesUrl = 'https://bz97fnlk79.execute-api.us-east-1.amazonaws.com/dev/remotes'
+
+function fetchRemotesRequest() {
+    return {
+        type: FETCH_REMOTES_REQUEST
+    }
+}
+
+function fetchRemotesSuccess(response) {
+    return {
+        type: FETCH_REMOTES_SUCCESS,
+        response
+    }
+}
+
+function fetchRemotesFailure(error) {
+    return {
+        type: FETCH_REMOTES_FAILURE,
+        error
+    }
+}
+
+export function fetchRemotes(token) {
+    return (dispatch) => {
+        dispatch(fetchRemotesRequest())
+        return fetch(remotesUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(checkStatus)
+        .then(response => response.json())
+        .then(response => {
+            dispatch(fetchRemotesSuccess(response))
+        })
+        .catch(error => {
+            dispatch(fetchRemotesFailure(error));
+        })
+    }
+}
+
+export const SET_REMOTE_TEMPERATURE = 'SET_REMOTE_TEMPERATURE';
+export const SET_REMOTE_NAME = 'SET_REMOTE_NAME'
+
+export function setRemoteName(id, name) {
+    return {
+        type: SET_REMOTE_NAME,
+        id,
+        name
+    }
+} 
+
+export function setRemoteTemperature(id, temperature) {
+    return {
+        type: SET_REMOTE_TEMPERATURE,
+        id,
+        temperature
+    }
+}
+
+export const CREATE_REMOTE_REQUEST = 'CREATE_REMOTE_REQUEST';
+export const CREATE_REMOTE_SUCCESS = 'CREATE_REMOTE_SUCCESS';
+export const CREATE_REMOTE_FAILURE = 'CREATE_REMOTE_FAILURE';
+
+function createRemoteRequest() {
+    return {
+        type: CREATE_REMOTE_REQUEST
+    }
+}
+
+function createRemoteSuccess(response) {
+    return {
+        type: CREATE_REMOTE_SUCCESS,
+        response
+    }
+}
+
+function createRemoteFailure(error) {
+    return {
+        type: CREATE_REMOTE_FAILURE,
+        error
+    }
+}
+
+export function createRemote(token, temperature, name) {
+    return (dispatch) => {
+        dispatch(createRemoteRequest(remotesUrl))
+        return fetch(remotesUrl, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name,
+                temperature
+            })
+        })
+        .then(checkStatus)
+        .then(response => response.json())
+        .then(response => {
+            dispatch(createRemoteSuccess(response))
+        })
+        .catch(error => {
+            dispatch(createRemoteFailure(error))
+        })
+    }
+}
