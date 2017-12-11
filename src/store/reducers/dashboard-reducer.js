@@ -8,6 +8,10 @@ import {
     UPDATE_REMOTE_SUCCESS,
 } from './../actions/dashboard-actions';
 
+import {
+    LOGOUT_SUCCESS
+} from './../actions/login-actions';
+
 const initialState = {
     remotes: [],
     debug: {
@@ -79,6 +83,9 @@ export default function dashboardReducer(state = initialState, action) {
                     $set: mungeRemote(action.response)
                 }
             })
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

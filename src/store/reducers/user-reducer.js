@@ -1,9 +1,6 @@
 import {
-    UNSET_TOKENS
-} from './../actions/token-actions';
-
-import {
-    LOGIN_SUCCESS
+    LOGIN_SUCCESS,
+    LOGOUT_SUCCESS
 } from './../actions/login-actions'
 
 import {
@@ -23,7 +20,7 @@ export default function userReducer(state = initialState, action) {
                 tokens: action.response
             })
 
-        case UNSET_TOKENS:
+        case LOGOUT_SUCCESS:
             return initialState;
 
         case GET_USER_INFO_REQUEST:
