@@ -56,6 +56,6 @@ export default connect((state) => {
     return {
         remotes: state.dashboard.remotes,
         debug: state.dashboard.debug,
-        idToken: state.user.tokens.idToken.jwtToken
+        idToken: state.user.tokens.idToken && state.user.tokens.idToken.jwtToken
     }
 })(Dashboard)
