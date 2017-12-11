@@ -1,0 +1,27 @@
+.toast {
+    position: fixed;
+    top: 64px;
+    left: 0px;
+    z-index: 9;
+    padding: .5em 0;
+    width: 100%;
+    background: gray;
+    color: white;
+    font-size: 1.125em;
+}
+
+.info {
+    background: #268bd2
+}
+
+.warning {
+    background: #b58900
+}
+
+.success {
+    background: #859900
+}
+
+.danger {
+    background: #dc322f;
+}

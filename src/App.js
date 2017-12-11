@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import createHistory from 'history/createBrowserHistory';
 import {
-  BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 
 import Header from './components/organisms/Header';
+import Toast from './components/organisms/Toast';
 import Home from './components/pages/Home';
 import Dashboard from './components/pages/Dashboard';
 import Login from './components/pages/Login';
@@ -24,6 +23,7 @@ class App extends Component {
       <ConnectedRouter history={history}>
         <div>
           <Header />
+          <Toast />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/dashboard" component={Dashboard} />

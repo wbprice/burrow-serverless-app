@@ -1,15 +1,11 @@
 import update from 'immutability-helper';
 
-import handleError from './../utils/loginErrors'
-
 import {
     SET_EMAIL_ADDRESS,
     SET_PASSWORD
 } from './../actions/signup-actions';
 
 import {
-    LOGIN_REQUEST,
-    LOGIN_SUCCESS,
     LOGIN_FAILURE
 } from './../actions/login-actions';
 
@@ -37,7 +33,7 @@ export default function loginReducer(state = initialState, action) {
             });
 
         case LOGIN_FAILURE:
-            return Object.assign({}, state, handleError(action.error));
+            return state;
 
         default: 
             return state;

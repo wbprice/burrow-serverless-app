@@ -40,7 +40,6 @@ class SignupForm extends Component {
         return (
             <form onSubmit={this.signup.bind(this)}>
                 <Input
-                    name="name"
                     label="Name"
                     help="What username will you login with?"
                     onChange={this.setName.bind(this)}
