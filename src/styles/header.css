@@ -1,6 +1,10 @@
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     background: #eee8d5;
-    margin-bottom: 3em;
+    z-index: 10;
 }
 
 .header a .app-name {

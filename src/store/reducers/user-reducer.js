@@ -23,6 +23,9 @@ export default function userReducer(state = initialState, action) {
                 tokens: action.response
             })
 
+        case UNSET_TOKENS:
+            return initialState;
+
         case GET_USER_INFO_REQUEST:
         case GET_USER_INFO_FAILURE:
         case GET_USER_INFO_SUCCESS:

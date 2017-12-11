@@ -1,5 +1,6 @@
 body {
     background: #fdf6e3;
     color: #073642;
-    margin: 0;
+    margin: 128px 0 0 0;
+    postion: relative;
 }

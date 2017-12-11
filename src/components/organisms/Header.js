@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
 
-import { Link } from 'react-router'
-
 class Header extends Component {
     render() {
         return (
@@ -34,6 +32,6 @@ Header.propTypes = {
 
 export default connect((state) => {
     return {
-        user: state.user
+        user: state.user,
     }
 })(Header)

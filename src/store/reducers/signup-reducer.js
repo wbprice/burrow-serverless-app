@@ -1,6 +1,4 @@
-'use strict';
-
-import update from 'immutability-helper';
+// import update from 'immutability-helper';
 
 import {
     SET_EMAIL_ADDRESS,
@@ -22,6 +20,7 @@ export default function signupReducer(state = initialState, action) {
         case SET_EMAIL_ADDRESS:
         case SET_PASSWORD:
         case SET_CONFIRM_PASSWORD:
+            return state;
 
         default:
             return state;

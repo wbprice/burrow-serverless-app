@@ -3,13 +3,14 @@ import checkStatus from './../checkStatus';
 import { push } from 'react-router-redux'
 
 import { getUserInfo } from './../actions/user-actions';
+import { setTimedToastAlert } from './../actions/toast-actions';
+import getErrorMessage from './../utils/getErrorMessage';
 
 const loginUrl = 'https://69w7wrgi7c.execute-api.us-east-1.amazonaws.com/dev/login';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
-
 
 function loginRequest() {
     return {
@@ -48,13 +49,17 @@ export function login(emailAddress, password) {
         .then(response => response.json())
         .then(response => {
             const accessToken = response.accessToken.jwtToken;
-            const idToken = response.idToken.jwtToken;
             dispatch(loginSuccess(response))
             dispatch(push('/dashboard'))
             dispatch(getUserInfo(accessToken))
         })
         .catch(error => {
-            dispatch(loginFailure(JSON.parse(error)));
+            const {
+                level,
+                message
+            } = getErrorMessage(JSON.parse(error.message));
+            dispatch(loginFailure(error));
+            dispatch(setTimedToastAlert(message, level));
         })
     };
 }
