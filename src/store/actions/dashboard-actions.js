@@ -1,11 +1,10 @@
 import checkStatus from './../checkStatus'
 import fetch from 'isomorphic-fetch'
+import { remotes as remotesUrl } from './../utils/remoteUrls';
 
 export const FETCH_REMOTES_REQUEST = 'FETCH_REMOTES_REQUEST';
 export const FETCH_REMOTES_SUCCESS = 'FETCH_REMOTES_SUCCESS';
 export const FETCH_REMOTES_FAILURE = 'FETCH_REMOTES_FAILURE';
-
-const remotesUrl = 'https://bz97fnlk79.execute-api.us-east-1.amazonaws.com/dev/remotes'
 
 function fetchRemotesRequest() {
     return {
