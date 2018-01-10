@@ -6,8 +6,7 @@ import { getUserInfo } from './../actions/user-actions';
 import { setTimedToastAlert } from './../actions/toast-actions';
 import getErrorMessage from './../utils/getErrorMessage';
 
-const loginUrl = 'https://mnujb6tvdc.execute-api.us-east-1.amazonaws.com/dev/login';
-const logoutUrl = 'https://mnujb6tvdc.execute-api.us-east-1.amazonaws.com/dev/logout';
+import { login as loginUrl } from './../utils/loginUrls';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
