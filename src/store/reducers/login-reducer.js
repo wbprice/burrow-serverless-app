@@ -2,7 +2,10 @@ import update from 'immutability-helper';
 
 import {
     SET_EMAIL_ADDRESS,
-    SET_PASSWORD
+    SET_PASSWORD,
+    SIGNUP_REQUEST,
+    SIGNUP_SUCCESS,
+    SIGNUP_FAILURE
 } from './../actions/signup-actions';
 
 import {
@@ -22,6 +25,11 @@ const initialState = {
 
 export default function loginReducer(state = initialState, action) {
     switch(action.type) {
+        case SIGNUP_REQUEST:
+        case SIGNUP_FAILURE:
+        case SIGNUP_SUCCESS:
+            return initialState;
+
         case SET_EMAIL_ADDRESS:
             return update(state, {
                 emailAddress: { $set: { value: action.emailAddress } }

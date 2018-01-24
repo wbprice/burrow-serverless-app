@@ -4,7 +4,8 @@ import {
     SET_USERNAME,
     SET_EMAIL_ADDRESS,
     SET_PASSWORD,
-    SET_CONFIRM_PASSWORD
+    SET_CONFIRM_PASSWORD,
+    SET_CONFIRMATION_CODE
 } from './../actions/signup-actions';
 
 const initialState = {
@@ -21,6 +22,10 @@ const initialState = {
         error: ''
     },
     confirmPassword: {
+        value: '',
+        error: ''
+    },
+    confirmationCode: {
         value: '',
         error: ''
     }
@@ -46,6 +51,11 @@ export default function signupReducer(state = initialState, action) {
         case SET_CONFIRM_PASSWORD:
             return update(state, {
                 confirmPassword: { $set: { value: action.confirmPassword } }
+            });
+
+        case SET_CONFIRMATION_CODE:
+            return update(state, {
+                confirmationCode: { $set: { value: action.confirmationCode}}
             });
 
         default:

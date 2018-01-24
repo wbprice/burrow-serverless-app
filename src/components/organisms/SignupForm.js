@@ -45,10 +45,11 @@ class SignupForm extends Component {
         return (
             <form onSubmit={this.signup.bind(this)}>
                 <Input
+                    name="username"
                     label="Name"
                     help="What name do you go by?"
                     onChange={this.setName.bind(this)}
-                    name={this.props.username.value}
+                    value={this.props.username.value}
                     error={this.props.username.error} />
 
                 <Input
@@ -87,11 +88,11 @@ SignupForm.propTypes = {
     error: PropTypes.object
 };
 
-export default connect((state) => {
+export default connect(({signup}) => {
     return {
-        username: state.signup.username,
-        emailAddress: state.signup.emailAddress,
-        password: state.signup.password,
-        confirmPassword: state.signup.confirmPassword,
+        username: signup.username,
+        emailAddress: signup.emailAddress,
+        password: signup.password,
+        confirmPassword: signup.confirmPassword,
     }
-})(SignupForm)
+})(SignupForm);
