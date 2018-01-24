@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 
 import {
     setUsername,
-    setPassword,
     setEmailAddress,
+    setPassword,
     setConfirmPassword,
     signup
 } from './../../store/actions/signup-actions';
@@ -33,7 +33,12 @@ class SignupForm extends Component {
 
     signup(event) {
         event.preventDefault();
-        this.props.dispatch(signup());
+        this.props.dispatch(signup(
+            this.props.username.value,
+            this.props.emailAddress.value,
+            this.props.password.value,
+            this.props.confirmPassword.value
+        ));
     }
 
     render() {
@@ -41,10 +46,10 @@ class SignupForm extends Component {
             <form onSubmit={this.signup.bind(this)}>
                 <Input
                     label="Name"
-                    help="What username will you login with?"
+                    help="What name do you go by?"
                     onChange={this.setName.bind(this)}
-                    name={this.props.name.value}
-                    error={this.props.name.error} />
+                    name={this.props.username.value}
+                    error={this.props.username.error} />
 
                 <Input
                     name="emailAddress"
@@ -55,7 +60,7 @@ class SignupForm extends Component {
                     error={this.props.emailAddress.error} />
 
                 <Input
-                    name="name"
+                    name="password"
                     label="Password"
                     type="password"
                     help="Enter your desired password"
@@ -64,7 +69,7 @@ class SignupForm extends Component {
                     error={this.props.password.error} />
 
                 <Input
-                    name="name"
+                    name="confirmPassword"
                     label="Confirm Password"
                     type="password"
                     help="Confirm your password"
@@ -72,7 +77,7 @@ class SignupForm extends Component {
                     value={this.props.confirmPassword.value}
                     error={this.props.confirmPassword.error} />
 
-                <button class="primary" type="submit">Submit</button>
+                <button className="primary" type="submit">Submit</button>
             </form>
         )
     }
@@ -84,9 +89,9 @@ SignupForm.propTypes = {
 
 export default connect((state) => {
     return {
-        emailAddress: state.signup.username,
+        username: state.signup.username,
+        emailAddress: state.signup.emailAddress,
         password: state.signup.password,
         confirmPassword: state.signup.confirmPassword,
-        name: state.signup.name
     }
 })(SignupForm)

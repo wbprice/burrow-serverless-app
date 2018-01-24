@@ -9,7 +9,7 @@ export default class Signup extends Component {
         return (
             <div className="login container">
                 <Card>
-                    <SignupForm error={{}} />
+                    <SignupForm />
                 </Card>
             </div>
         )

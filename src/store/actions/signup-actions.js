@@ -1,12 +1,23 @@
 import fetch from 'isomorphic-fetch'; 
 import checkStatus from './../checkStatus'; 
 
-const signupUrl = 'https://iqeruruex1.execute-api.us-east-1.amazonaws.com/dev/signup';
+import {
+    signup as signupUrl
+} from './../utils/loginUrls';
+import getErrorMessage from '../utils/getErrorMessage';
+import { setTimedToastAlert } from './toast-actions';
 
 export const SET_USERNAME = 'SET_USERNAME';
-export const SET_CONFIRM_PASSWORD = 'SET_CONFIRM_PASSWORD';
 export const SET_EMAIL_ADDRESS = 'SET_EMAIL_ADDRESS';
+export const SET_CONFIRM_PASSWORD = 'SET_CONFIRM_PASSWORD';
 export const SET_PASSWORD = 'SET_PASSWORD';
+
+export function setUsername(username) {
+    return {
+        type: SET_USERNAME,
+        username
+    }
+}
 
 export function setEmailAddress(emailAddress) {
     return {
@@ -20,13 +31,6 @@ export function setPassword(password) {
         type: SET_PASSWORD,
         password
     };
-}
-
-export function setUsername(username) {
-    return {
-        type: SET_USERNAME,
-        username
-    }
 }
 
 export function setConfirmPassword(confirmPassword) {
@@ -60,7 +64,7 @@ function signupFailure(error) {
     };
 }
 
-export function signup(name, username, password, confirmPassword) {
+export function signup(username, emailAddress, password, confirmPassword) {
     return (dispatch) => {
         dispatch(signupRequest());
         if (password !== confirmPassword) {
@@ -68,15 +72,28 @@ export function signup(name, username, password, confirmPassword) {
         }
         fetch(signupUrl, {
             method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
-                name,
                 username,
+                emailAddress,
                 password
             })
         })
         .then(checkStatus)
         .then(response => response.json())
-        .then(signupSuccess)
-        .catch(signupFailure)
+        .then(response => {
+            dispatch(signupSuccess());
+            debugger;
+        })
+        .catch(error => {
+            const {
+                level,
+                message
+            } = getErrorMessage(JSON.parse(error.message));
+            dispatch(signupFailure(error))
+            dispatch(setTimedToastAlert(message, level));
+        })
     }
 }
