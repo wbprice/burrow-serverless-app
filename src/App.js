@@ -12,7 +12,10 @@ import Dashboard from './components/pages/Dashboard';
 import Login from './components/pages/Login';
 import Signup from './components/pages/Signup';
 import NoMatch from './components/pages/NoMatch';
+import ConfirmAccount from './components/pages/ConfirmAccount';
+
 import './styles/style.css';
+
 import {
   history
 } from './../src/store';
@@ -29,6 +32,7 @@ class App extends Component {
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/confirm" component={ConfirmAccount} />
             <Route component={NoMatch} />
           </Switch>
         </div>
