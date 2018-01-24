@@ -15,11 +15,14 @@ class ConfirmForm extends Component {
 
     confirm(event) {
         event.preventDefault();
-        this.props.dispatch(confirmAccount());
+        this.props.dispatch(confirmAccount(
+            this.props.emailAddress.value,
+            this.props.confirmationCode.value
+        ));
     }
 
     setEmailAddress(event) {
-        this.props.dispatch(setEmailAddress(event.target.kkvalue));
+        this.props.dispatch(setEmailAddress(event.target.value));
     }
 
     setConfirmationCode(event) {
@@ -51,8 +54,8 @@ class ConfirmForm extends Component {
 
 ConfirmForm.propTypes = {
     dispatch: PropTypes.func,
-    confirmationCode: PropTypes.obj,
-    emailAddress: PropTypes.obj
+    confirmationCode: PropTypes.object,
+    emailAddress: PropTypes.object
 }
 
 export default connect(({signup}) => {

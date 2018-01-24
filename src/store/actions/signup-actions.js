@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'; 
 import checkStatus from './../checkStatus'; 
+import { push } from 'react-router-redux';
 
 import {
     signup as signupUrl,
@@ -43,24 +44,24 @@ export function setConfirmPassword(confirmPassword) {
     };
 }
 
-const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
-const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
-const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
 
-function signupRequest() {
+export function signupRequest() {
     return {
         type: SIGNUP_REQUEST
     };
 }
 
-function signupSuccess(response) {
+export function signupSuccess(response) {
     return {
         type: SIGNUP_SUCCESS,
         response
     };
 }
 
-function signupFailure(error) {
+export function signupFailure(error) {
     return {
         type: SIGNUP_FAILURE,
         error
@@ -88,6 +89,8 @@ export function signup(username, emailAddress, password, confirmPassword) {
         .then(response => response.json())
         .then(response => {
             dispatch(signupSuccess());
+            dispatch(setTimedToastAlert(`We sent a confirmation email to ${emailAddress}.  Go get the confirmation code and come back!`, 'success'));
+            dispatch(push('/confirm'));
         })
         .catch(error => {
             const {
@@ -147,6 +150,8 @@ export function confirmAccount(emailAddress, code) {
         .then(response => response.json())
         .then(response => {
             dispatch(confirmAccountSuccess());
+            dispatch(push('/login'));
+            dispatch(setTimedToastAlert('Account confirmed.  You can log in now.', 'success'))
         })
         .catch(error => {
             const {
