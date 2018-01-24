@@ -2,8 +2,11 @@ import fetch from 'isomorphic-fetch';
 import checkStatus from './../checkStatus'; 
 
 import {
-    signup as signupUrl
+    signup as signupUrl,
 } from './../utils/loginUrls';
+
+const confirmAccountUrl = require('./../utils/loginUrls')['confirm-account']
+
 import getErrorMessage from '../utils/getErrorMessage';
 import { setTimedToastAlert } from './toast-actions';
 
@@ -85,7 +88,6 @@ export function signup(username, emailAddress, password, confirmPassword) {
         .then(response => response.json())
         .then(response => {
             dispatch(signupSuccess());
-            debugger;
         })
         .catch(error => {
             const {
