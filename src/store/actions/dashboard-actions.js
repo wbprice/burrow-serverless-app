@@ -69,9 +69,10 @@ export const CREATE_REMOTE_REQUEST = 'CREATE_REMOTE_REQUEST';
 export const CREATE_REMOTE_SUCCESS = 'CREATE_REMOTE_SUCCESS';
 export const CREATE_REMOTE_FAILURE = 'CREATE_REMOTE_FAILURE';
 
-function createRemoteRequest() {
+function createRemoteRequest(request) {
     return {
-        type: CREATE_REMOTE_REQUEST
+        type: CREATE_REMOTE_REQUEST,
+        request
     }
 }
 
@@ -91,7 +92,7 @@ function createRemoteFailure(error) {
 
 export function createRemote(token, temperature, name) {
     return (dispatch) => {
-        dispatch(createRemoteRequest(remotesUrl))
+        dispatch(createRemoteRequest({temperature, name}))
         return fetch(remotesUrl, {
             method: 'post',
             headers: {
