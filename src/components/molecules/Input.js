@@ -17,7 +17,7 @@ export default class Input extends Component {
                     required={this.props.required} 
                     name={this.props.name} 
                     id={this.props.name}
-                    placeholder={this.props.label}
+                    placeholder={this.props.placeholder ||this.props.label}
                     type={this.props.type || 'text'} />
                 { !this.props.error && this.props.help &&
                     <div className="help-text">{this.props.help}</div>
@@ -38,5 +38,6 @@ Input.propTypes = {
     name: PropTypes.string,
     label: PropTypes.string,
     type: PropTypes.string,
+    placeholder: PropTypes.string,
     explanation: PropTypes.string
 }
