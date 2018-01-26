@@ -1,6 +1,8 @@
 import checkStatus from './../checkStatus'
 import fetch from 'isomorphic-fetch'
 import { remotes as remotesUrl } from './../utils/remoteUrls';
+import { setTimedToastAlert } from './toast-actions';
+import { push } from 'react-router-redux';
 
 export const FETCH_REMOTES_REQUEST = 'FETCH_REMOTES_REQUEST';
 export const FETCH_REMOTES_SUCCESS = 'FETCH_REMOTES_SUCCESS';
@@ -42,6 +44,8 @@ export function fetchRemotes(token) {
         })
         .catch(error => {
             dispatch(fetchRemotesFailure(error));
+            dispatch(push('/login'));
+            dispatch(setTimedToastAlert('You\'ll need to login before managing thermostats', 'warning'));
         })
     }
 }
