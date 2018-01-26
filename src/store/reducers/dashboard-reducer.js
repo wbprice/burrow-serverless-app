@@ -3,9 +3,11 @@ import update from 'immutability-helper'
 import {
     SET_REMOTE_NAME,
     SET_REMOTE_TEMPERATURE,
-    FETCH_REMOTES_SUCCESS,
+    CREATE_REMOTE_REQUEST,
+    CREATE_REMOTE_SUCCESS,
     FETCH_REMOTES_FAILURE,
-    UPDATE_REMOTE_SUCCESS,
+    FETCH_REMOTES_SUCCESS,
+    UPDATE_REMOTE_SUCCESS
 } from './../actions/dashboard-actions';
 
 import {
@@ -47,6 +49,20 @@ export default function dashboardReducer(state = initialState, action) {
             })
 
         case FETCH_REMOTES_FAILURE:
+            return state;
+
+        case CREATE_REMOTE_REQUEST:
+            return update(state, {
+                remotes: { $push: [
+                    Object.assign(
+                        {},
+                        {id: 'fakeid'},
+                        mungeRemote(action.request)
+                    )
+                ]}
+            });
+
+        case CREATE_REMOTE_SUCCESS:
             return state;
 
         case SET_REMOTE_NAME:
