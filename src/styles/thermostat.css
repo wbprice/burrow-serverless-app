@@ -1,0 +1,42 @@
+.remotes .thermostat {
+    background: #002b36;
+    width: 15em;
+    height: 15em;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 1em;
+}
+
+.remotes .thermostat .input {
+    padding-bottom: 0;
+}
+
+.remotes .thermostat input {
+    background: transparent;
+    color: white;
+    text-align: center;
+    width: 75%;
+    border: none;
+    height: 1em;
+}
+
+.remotes .thermostat label[for="temperature"] {
+    font-size: 1em;
+}
+
+.remotes .thermostat input[name="temperature"] {
+    font-size: 6em;
+    height: 1em;
+}
+
+.remotes .thermostat input[name="temperature"]:focus {
+    border: none;
+}
+
+.remotes button {
+    color: white;
+}
