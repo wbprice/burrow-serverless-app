@@ -18,31 +18,30 @@ class Dashboard extends Component {
                 <h1>Dashboard</h1>
                 <p>Manage your remotes here</p>
 
-                {this.props.remotes.map((remote, index) => {
-                    return (
-                        <RemoteForm
-                            id={remote.id}
-                            key={remote.id}
-                            idToken={this.props.idToken}
-                            dispatch={this.props.dispatch}
-                            temperature={remote.temperature}
-                            name={remote.name}
-                        />
-                    )
-                })}
+                <div className="remotes">
+                    {this.props.remotes.map((remote, index) => {
+                        return (
+                            <RemoteForm
+                                id={remote.id}
+                                key={remote.id}
+                                idToken={this.props.idToken}
+                                dispatch={this.props.dispatch}
+                                temperature={remote.temperature}
+                                name={remote.name}
+                            />
+                        )
+                    })}
+                </div>
 
-                { !this.props.remotes.length &&
-                    <div className="card">
-                        <h2>DEBUG</h2>
-                        <p>There aren't any remotes!  You should create one.</p>
-                        <RemoteForm 
-                            idToken={this.props.idToken}
-                            dispatch={this.props.dispatch}
-                            temperature={this.props.debug.temperature}
-                            name={this.props.debug.name}
-                        />
-                    </div>
-                }
+                <div className="card">
+                    <h2>New Remote</h2>
+                    <RemoteForm 
+                        idToken={this.props.idToken}
+                        dispatch={this.props.dispatch}
+                        temperature={this.props.debug.temperature}
+                        name={this.props.debug.name}
+                    />
+                </div>
             </div>
         )
     }

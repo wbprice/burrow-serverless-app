@@ -45,26 +45,32 @@ class RemoteForm extends Component {
     render() {
         return (
             <form 
+                className="thermostat"
                 onSubmit={this.onSubmit.bind(this)}>
-                <Input
-                    onChange={this.setTemperature.bind(this)}
-                    value={this.props.temperature.value}
-                    error={this.props.temperature.error}
-                    required
-                    name="temperature"
-                    label="Temperature"
-                    type="number" />
+                <div>
+                    <Input
+                        onChange={this.setTemperature.bind(this)}
+                        value={this.props.temperature.value}
+                        error={this.props.temperature.error}
+                        required
+                        placeholder={!this.props.id && 'Temperature'}
+                        name="temperature"
+                        label={this.props.id && this.props.name.value || 'Temperature'}
+                        type="number" />
 
-                <Input
-                    onChange={this.setName.bind(this)}
-                    value={this.props.name.value}
-                    error={this.props.name.error}
-                    required
-                    name="name"
-                    label="Name"
-                    type="text" />
-            
-                <button type="submit">Update</button>
+                    {!this.props.id && 
+                        <Input
+                            onChange={this.setName.bind(this)}
+                            value={this.props.name.value}
+                            error={this.props.name.error}
+                            required
+                            name="name"
+                            label="Name"
+                            type="text" />
+                    }
+                
+                    <button type="submit">Update</button>
+                </div>
             </form>
         )
     }
