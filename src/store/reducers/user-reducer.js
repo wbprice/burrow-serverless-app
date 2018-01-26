@@ -1,6 +1,7 @@
 import {
     LOGIN_SUCCESS,
-    LOGOUT_SUCCESS
+    LOGOUT_SUCCESS,
+    LOGOUT_REQUEST
 } from './../actions/login-actions'
 
 import {
@@ -20,6 +21,7 @@ export default function userReducer(state = initialState, action) {
                 tokens: action.response
             })
 
+        case LOGOUT_REQUEST:
         case LOGOUT_SUCCESS:
             return initialState;
 

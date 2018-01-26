@@ -20,6 +20,6 @@ export function setTimedToastAlert(message, level) {
         dispatch(setToastAlert(message, level));
         setTimeout(() => {
             dispatch(dismissToastAlert())
-        }, 3000)
+        }, 10000)
     }
 }
